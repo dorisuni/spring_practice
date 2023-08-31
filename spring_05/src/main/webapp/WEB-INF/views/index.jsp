@@ -20,5 +20,10 @@
         param2:<input type="text" name="param2"> <br>
         <input type="submit" value="전송">
     </form>
+
+    <a href="/result1">변수 화면에 출력</a>
+    <a href="/result2">DTO 객체 변수 화면에 출력</a>
+    <a href="/result3">List 객체 변수 화면에 출력</a>
+    
 </body>
 </html>
