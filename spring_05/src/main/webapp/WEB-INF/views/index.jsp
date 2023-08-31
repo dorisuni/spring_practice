@@ -10,8 +10,14 @@
     <!-- query string (주소값에 파라미터 전달하기)-->
     <!-- form 태그로 파라미터 보내기 메소드를 생략하면 기본적으로 get-->
     <form action="/demo2" method="post">
-        p1:<input type="text" name="param1"> <br>
-        p2:<input type="text" name="param2"> <br>
+        param1:<input type="text" name="param1"> <br>
+        param2:<input type="text" name="param2"> <br>
+        <input type="submit" value="전송">
+    </form>
+
+    <form action="/demo3" method="post">
+        param1:<input type="text" name="param1"> <br>
+        param2:<input type="text" name="param2"> <br>
         <input type="submit" value="전송">
     </form>
 </body>
