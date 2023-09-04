@@ -15,6 +15,16 @@
     <select id="findById" parameterType="Long" resultType="com.icia.student.dto.StudentDTO">
         select * from student_table where id=#{id}
     </select>
+
+    <update id="update" parameterType="com.icia.student.dto.StudentDTO">
+        update student_table set studentNumber={#studentNumber}, studentName=={#studentName},
+        studentMajor={#studentMajor},studentMobile={#studentMobile} where studentName=#{studentName}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from student_table where id=#{id}
+    </delete>
+
 </mapper>
 
 

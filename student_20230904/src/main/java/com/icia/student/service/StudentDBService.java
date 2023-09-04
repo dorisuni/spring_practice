@@ -26,4 +26,12 @@ public class StudentDBService {
         return studentDBRepository.findById(id);
     }
 
+//    public void update(StudentDTO studentDTO){
+//        studentDBRepository.update(studentDTO);
+//    }
+//
+//    public void delete(Long id) {
+//        studentDBRepository.delete(id);
+//    }
+
 }

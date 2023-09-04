@@ -33,32 +33,39 @@ public class StudentDBController {
     public String list(Model model) {
         List<StudentDTO> studentDTOList = studentDBService.findAll();
         System.out.println("studentDTOList = " + studentDTOList);
+        model.addAttribute("studentList",studentDTOList);
         return "list";
     }
 
     @GetMapping("/find")
-    public String findById(@RequestParam("id") Long id) {
+    public String findById(@RequestParam("id") Long id,Model model) {
         StudentDTO studentDTO = studentDBService.findById(id);
+        model.addAttribute("student",studentDTO);
         return "detail";
     }
 
-//    @GetMapping("/delete")
-//    public String delete(@RequestParam("id") Long id){
-//        studentDBService.delete(id);
-//        return "list";
-//    }
-//
-//    @PostMapping("/update")
-//    public String update(@ModelAttribute StudentDTO studentDTO){
-//        studentDBService.update(studentDTO);
-//        return "list";
-//    }
-//
-//    @GetMapping("/update")
-//    public String update(@RequestParam("id") Long id){
-//        StudentDTO studentDTO = studentDBService.findById(id);
-//        return "update";
-//    }
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long id,Model model){
+        studentDBService.delete(id);
+        List<StudentDTO> studentDTOList = studentDBService.findAll();
+        model.addAttribute("studentList",studentDTOList);
+        return "list";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute StudentDTO studentDTO,Model model){
+        studentDBService.update(studentDTO);
+        List<StudentDTO> studentDTOList = studentDBService.findAll();
+        model.addAttribute("studentList",studentDTOList);
+        return "list";
+    }
+
+    @GetMapping("/update")
+    public String update(@RequestParam("id") Long id,Model model){
+        StudentDTO studentDTO = studentDBService.findById(id);
+        model.addAttribute("student",studentDTO);
+        return "update";
+    }
 
 
 }

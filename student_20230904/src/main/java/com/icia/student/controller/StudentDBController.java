@@ -23,10 +23,9 @@ public class StudentDBController {
     }
 
     @PostMapping("/save1")
-    public String save(@ModelAttribute StudentDTO studentDTO, Model model) {
+    public String save(@ModelAttribute StudentDTO studentDTO) {
         System.out.println("studentDTO = " + studentDTO);
         studentDBService.save(studentDTO);
-        model.addAttribute("student",studentDTO);
         return "index";
     }
 
@@ -34,14 +33,32 @@ public class StudentDBController {
     public String list(Model model) {
         List<StudentDTO> studentDTOList = studentDBService.findAll();
         System.out.println("studentDTOList = " + studentDTOList);
-        model.addAttribute("studentList", studentDTOList);
         return "list";
     }
 
     @GetMapping("/find")
-    public String findById(@RequestParam("id") Long id, Model model) {
+    public String findById(@RequestParam("id") Long id) {
         StudentDTO studentDTO = studentDBService.findById(id);
-        model.addAttribute("student", studentDTO);
         return "detail";
     }
+
+//    @GetMapping("/delete")
+//    public String delete(@RequestParam("id") Long id){
+//        studentDBService.delete(id);
+//        return "list";
+//    }
+//
+//    @PostMapping("/update")
+//    public String update(@ModelAttribute StudentDTO studentDTO){
+//        studentDBService.update(studentDTO);
+//        return "list";
+//    }
+//
+//    @GetMapping("/update")
+//    public String update(@RequestParam("id") Long id){
+//        StudentDTO studentDTO = studentDBService.findById(id);
+//        return "update";
+//    }
+
+
 }

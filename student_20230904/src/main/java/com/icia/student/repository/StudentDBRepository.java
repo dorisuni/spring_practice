@@ -23,4 +23,13 @@ public class StudentDBRepository {
     public StudentDTO findById(Long id) {
         return sql.selectOne("Student.findById", id);
     }
+
+    public void update(StudentDTO studentDTO){
+        sql.update("Student.update", studentDTO);
+    }
+
+    public void delete(Long id){
+        sql.delete("Student.delete",id);
+    }
+
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>학생 리스트</h2>
-    <h4>인덱스 학번 이름 학과 전화번호<h4>
+    <h4>인덱스 학번 이름 학과 전화번호</h4>
     <c:forEach items="${studentList}" var="student">
         <td>
             <a href="/find?id=${student.id}">${student.id}</a>

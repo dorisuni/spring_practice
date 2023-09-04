@@ -4,9 +4,8 @@
     <title>Title</title>
 </head>
 <body>
-    <h2>index.jsp</h2>
+    <h2>대학교 학생관리</h2>
     <a href="/save">save.jsp</a>
-    <a href="/detail">detail.jsp</a>
     <a href="/list">list.jsp</a>
 
 </body>

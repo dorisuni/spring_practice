@@ -16,6 +16,13 @@
         ${student.studentName}
         ${student.studentMajor}
         ${student.studentMobile}
+        <td>
+            <a href="/update?id=${student.id}">수정</a>
+        </td>
+        <td>
+            <a href="/delete?id=${student.id}">삭제</a>
+        </td>
+
         <br>
     </c:forEach>
 
