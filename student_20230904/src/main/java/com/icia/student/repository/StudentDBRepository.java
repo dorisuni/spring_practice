@@ -1,6 +1,6 @@
-package com.icia.demo.repository;
+package com.icia.student.repository;
 
-import com.icia.demo.dto.DemoDTO;
+import com.icia.student.dto.StudentDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -8,19 +8,19 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DemoDBRepository {
+public class StudentDBRepository {
     @Autowired
     private SqlSessionTemplate sql;
 
-    public void reqdb1(DemoDTO demoDTO) {
-        sql.insert("Demo.save", demoDTO);
+    public void save(StudentDTO studentDTO) {
+        sql.insert("Student.save", studentDTO);
     }
 
-    public List<DemoDTO> findAll() {
-        return sql.selectList("Demo.findAll");
+    public List<StudentDTO> findAll() {
+        return sql.selectList("Student.findAll");
     }
 
-    public DemoDTO findById(Long id) {
-        return sql.selectOne("Demo.findById", id);
+    public StudentDTO findById(Long id) {
+        return sql.selectOne("Student.findById", id);
     }
 }

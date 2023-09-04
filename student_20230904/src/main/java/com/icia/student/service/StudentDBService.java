@@ -1,28 +1,29 @@
-package com.icia.demo.service;
+package com.icia.student.service;
 
-import com.icia.demo.dto.DemoDTO;
-import com.icia.demo.repository.DemoDBRepository;
+import com.icia.student.dto.StudentDTO;
+import com.icia.student.repository.StudentDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class DemoDBService {
+public class StudentDBService {
     @Autowired
-    private DemoDBRepository demoDBRepository;
+    private StudentDBRepository studentDBRepository;
 
-    public void reqdb1(DemoDTO demoDTO) {
-        demoDBRepository.reqdb1(demoDTO);
+    public void save(StudentDTO studentDTO) {
+        studentDBRepository.save(studentDTO);
     }
 
-    public List<DemoDTO> findAll() {
-//        List<DemoDTO> demoDTOList = demoDBRepository.findAll();
-//        return demoDTOList;
-        return demoDBRepository.findAll();
+    public List<StudentDTO> findAll() {
+//        List<StudentDTO> studentDTOList = studentDBRepository.findAll();
+//        return studentDTOList;
+        return studentDBRepository.findAll();
     }
 
-    public DemoDTO findById(Long id) {
-        return demoDBRepository.findById(id);
+    public StudentDTO findById(Long id) {
+        return studentDBRepository.findById(id);
     }
+
 }
