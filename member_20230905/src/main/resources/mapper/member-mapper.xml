@@ -3,27 +3,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace 반드시 작성! -->
-<mapper namespace="Student">
-    <insert id="save" parameterType="com.icia.student.dto.StudentDTO">
-        insert into student_table(studentNumber, studentName,studentMajor,studentMobile)
-        values(#{studentNumber}, #{studentName},#{studentMajor},#{studentMobile})
+<mapper namespace="Member">
+    <insert id="save" parameterType="com.icia.member.dto.MemberDTO">
+        insert into member_table(memberEmail, memberPassword,memberName,memberBirth,memberMobile)
+        values(#{memberEmail}, #{memberPassword},#{memberName},#{memberBirth},#{memberMobile})
     </insert>
-    <select id="findAll" resultType="student">
-        select * from student_table
+    <select id="findAll" resultType="member">
+        select * from member_table
     </select>
-
-    <select id="findById" parameterType="Long" resultType="com.icia.student.dto.StudentDTO">
-        select * from student_table where id=#{id}
+    <select id="login" parameterType="com.icia.member.dto.MemberDTO" resultType="com.icia.member.dto.MemberDTO">
+        select * from member_table where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}
     </select>
-
-    <update id="update" parameterType="com.icia.student.dto.StudentDTO">
-        update student_table set studentNumber=#{studentNumber}, studentName= #{studentName},
-        studentMajor= #{studentMajor},studentMobile= #{studentMobile} where id=#{id}
+    <select id="findById" parameterType="Long" resultType="com.icia.member.dto.MemberDTO">
+        select * from member_table where id=#{id}
+    </select>
+    <select id="findByEmail" parameterType="String" resultType="com.icia.member.dto.MemberDTO">
+        select * from member_table where memberEmail= #{memberEmail}
+    </select>
+    <update id="update" parameterType="com.icia.member.dto.MemberDTO">
+        update member_table set memberEmail=#{memberEmail}, memberPassword= #{memberPassword},
+                                memberName= #{memberName},memberBirth= #{memberBirth},memberMobile=#{memberMobile} where id=#{id}
     </update>
-
     <delete id="delete" parameterType="Long">
-        delete from student_table where id=#{id}
+        delete from member_table where id=#{id}
     </delete>
+
 
 </mapper>
 

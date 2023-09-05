@@ -12,10 +12,10 @@
         <td>
             <a href="/find?id=${student.id}">${student.id}</a>
         </td>
-        ${student.studentNumber}
-        ${student.studentName}
-        ${student.studentMajor}
-        ${student.studentMobile}
+            ${student.studentNumber}
+            ${student.studentName}
+            ${student.studentMajor}
+            ${student.studentMobile}
         <td>
             <a href="/update?id=${student.id}">수정</a>
         </td>

@@ -11,6 +11,7 @@
         학과 <input type="text" name="studentMajor"> <br>
         전화번호 <input type="text" name="studentMobile"> <br>
         <input type="submit" value="전송">
+
     </form>
 </body>
 </html>

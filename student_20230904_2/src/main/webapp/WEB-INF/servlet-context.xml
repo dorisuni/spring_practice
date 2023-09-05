@@ -20,6 +20,6 @@
     </beans:bean>
 
     <!-- 프로젝트 패키지이름 확인 -->
-    <context:component-scan base-package="com.icia.student" />
+    <context:component-scan base-package="com.icia.student"/>
 
 </beans:beans>
