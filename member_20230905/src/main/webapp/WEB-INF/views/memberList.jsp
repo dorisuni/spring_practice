@@ -11,9 +11,10 @@
 <html>
 <head>
     <title>멤버리스트 페이지</title>
-
 </head>
 <body>
+<%@include file="component/header.jsp"%>
+<%@include file="component/nav.jsp"%>
     <h1>멤버리스트 페이지</h1>
     <h4>인덱스 이메일 비밀번호 이름 생년월일 전화번호</h4>
     <c:forEach items="${memberList}" var="member">
@@ -34,6 +35,7 @@
         <br>
     </c:forEach>
 
+<%@include file="component/footer.jsp"%>
 
 </body>
 </html>

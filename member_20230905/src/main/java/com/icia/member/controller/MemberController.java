@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -34,13 +35,16 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("memberEmail") String memberEmail, @RequestParam("memberPassword") String memberPassword,Model model)
+    public String login(@RequestParam("memberEmail") String memberEmail, @RequestParam("memberPassword") String memberPassword, Model model, HttpSession session)
      {
          MemberDTO memberDTO = memberService.loginByEmail(memberEmail);
          System.out.println("memberDTO1 = " + memberDTO);
          if (memberDTO != null && memberDTO.getMemberPassword().equals(memberPassword)) {
              // 로그인 성공
              model.addAttribute("member",memberDTO);
+             //로그인 성공시 사용자의 이메일을 세션에 저장
+             session.setAttribute("loginEmail",memberDTO.getMemberEmail());
+
              return "memberMain";
          } else {
              // 로그인 실패
@@ -96,8 +100,12 @@ public class MemberController {
     }
 
     @GetMapping("/logout")
-    public String logout() {
-        return "index";
+    public String logout(HttpSession session) {
+        //해당 파라미터만 없앨 경우
+//        session.removeAttribute("loginEmail");
+        //세션 전체를 없앨 경우
+        session.invalidate();
+        return "redirect:/";
 
     }
 

@@ -1,5 +1,5 @@
-Member Project
-Member Project
+### Member Project
+
 1. 프로젝트 기본 정보
    a. project name: member_20230905
    b. package: com.icia.member
@@ -56,7 +56,20 @@ Member Project
    iv. memberName: varchar(20), not null
    v. memberBirth: date, not null
    vi. memberMobile: varchar(30), not null
+
 6. 추가사항 (시간 남으면)
    a. 회원가입시 입력하지 않은 항목이 있다면 회원가입 진행하지 않고 alert 출력
    b. 회원가입시 비밀번호 정규식 체크
    i. 영문소문자, 숫자, 특수문자(!#$%) 하나 이상 입력하고 8~16자로
+
+### 테이블명
+```sql 
+create table member_table(
+	id bigint auto_increment,
+	memberEmail varchar(50) unique,
+	memberPassword varchar(20) not null,
+	memberName varchar(20) not null,
+	memberBirth date not null,
+	memberMobile varchar(30) not null
+);
+```

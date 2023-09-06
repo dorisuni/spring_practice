@@ -1,16 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 2023-09-06
-  Time: 오전 9:56
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
-</html>
+<%-- header라는 id가 적용된 div --%>
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
+</head>
+
+<div class="row">
+    <div class="col">
+        <div id="header" class="text-center">
+            <img src="../../../resources/img/market.jpg" alt=""/>
+        </div>
+    </div>
+</div>
+

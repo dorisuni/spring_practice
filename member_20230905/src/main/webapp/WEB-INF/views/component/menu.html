@@ -1,10 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu {
+            display: flex;
+            align-items: center;
+            background-color: white;
+        }
+
+        .menu-item {
+            list-style-type: none;
+        }
+
+        /* memu-item클래스가 적용된 내부 요소의 a태그 요소*/
+        .menu-item a {
+            text-decoration: none;
+            /* a태그는 기본적으로 inline요소
+            inline 요소는 높이, 너비를 가질 수 없음.
+            높이 너비를 가지려면 block 요소여야 함.
+            아래 문법은 block요소로 하는 방법임.
+            인라인 요소는 두개의 태그를 동시에 썼을 때 같은 줄에 동시에 표시되면 inline임. 대표적인게
+            input,a요소 등임.
+             */
+            display: block;
+            padding: 10px;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .menu-item:hover {
+            background-color: yellow;
+        }
+
+        #login-area {
+            display: flex;
+        }
+
+        #login-area a {
+
+        }
+    </style>
 </head>
 <body>
-$END$
+<div id="nav">
+    <ul class="menu">
+        <li class="menu-item">
+            <a href="/">index</a>
+        </li>
+        <li class="menu-item">
+            <a href="/save">회원가입</a>
+        </li>
+        <li class="menu-item">
+            <a href="/login">로그인</a>
+        </li>
+        <li class="menu-item">
+            <a href="/members">회원목록</a>
+        </li>
+        <li class="menu-item">
+            <a href="/logout">로그아웃</a>
+        </li>
+        <!--            로그인 여부애 따라 환영합니다, 로그아웃 보이도록-->
+        <li class="menu-item" id="login-area">
+
+        </li>
+
+    </ul>
+</div>
 </body>
+<script>
+    const loginArea = document.getElementById("login-area");
+    const loginEmail = 'member1';
+    console.log(loginEmail.length);
+    if (loginEmail.length != 0) {
+        // 로그인
+        loginArea.innerHTML = "<a href='/mypage'>" + loginEmail + "님 환영해요!</a>" + "<a href='/logout'>logout</a>";
+    } else {
+        // 로그인 안했음
+        loginArea.innerHTML = "<a href='/login'>로그인</a>";
+    }
+</script>
+
 </html>

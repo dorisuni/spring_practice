@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="component/header.jsp"%>
+<%@include file="component/nav.jsp"%>
     <h2>학생수정을 위한 페이지</h2>
     <form action="/update" method="post">
         <input type="hidden" name="id" value = "${member.id}">
@@ -21,6 +23,6 @@
         전화번호 <input type="text" name="memberMobile" value = "${member.memberMobile}"><br>
         <input type="submit" value="수정">
     </form>
-
+<%@include file="component/footer.jsp"%>
 </body>
 </html>

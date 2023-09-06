@@ -1,2 +1,4 @@
-package com.icia.member.repository;public class MarketRepository {
+package com.icia.member.repository;
+
+public class MarketRepository {
 }
