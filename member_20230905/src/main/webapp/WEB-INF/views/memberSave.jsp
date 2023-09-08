@@ -118,12 +118,26 @@
             color: rgb(95, 0, 128);
             background-color: rgb(255, 255, 255);
             border: 1px solid rgb(95, 0, 128);
-
-            .css-1schgvv > span {
-                font-size: 14px;
-                font-weight: 500;
-            }
         }
+
+        .css-1schgvv > span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .css-18m884r{
+            display: block;
+            padding: 0px 10px;
+            text-align: center;
+            overflow: hidden;
+            width: 260px;
+            height: 56px;
+            border-radius: 3px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(95, 0, 128);
+            border: 0px none;
+        }
+
 
     </style>
 </head>
@@ -140,7 +154,7 @@
                         <span>이메일</span><span class="essential">* </span>
                     </div>
                     <div class="col-6 col-md-6 col-sm-6">
-                        <input class="form-control" type="text" name="memberEmail" onchange="checkEmail(this)", placeholder="이메일을 입력해 주세요.">
+                        <input class="form-control" type="text" name="memberEmail" onchange="checkEmail(this)", placeholder="예:dorisuni@gmail.com">
                     </div>
                     <div class="col-3 col-md-3 col-sm-3">
                         <button class="css-ufulao css-1w0ksfz" type="button" onclick="checkDuplicate()"><span>중복확인</span></button>
@@ -171,14 +185,7 @@
                         <input class="form-control" type="text" name="memberName" placeholder="이름을 입력해 주세요.">
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-3 col-md-3 col-sm-3">
-                        <span>닉네임</span><span class="essential">*</span>
-                    </div>
-                    <div class="col-6 col-md-6 col-sm-6">
-                        <input class="form-control" type="text" name="memberNickName" placeholder="닉네임을 입력해 주세요.">
-                    </div>
-                </div>
+
                 <div class="row mb-4">
                     <div class="col-3 col-md-3 col-sm-3">
                         <span>생년월일</span><span class="essential">*</span>
@@ -214,7 +221,7 @@
                 </div>
                 <div class="row">
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="submit" class="btn-colour-2">회원가입</button>
+                        <button type="submit" class="css-18m884r">회원가입</button>
                     </div>
                 </div>
             </form>

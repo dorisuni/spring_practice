@@ -19,6 +19,7 @@
             padding: 5px 0;
             margin: 0 auto;
             width: 450px;
+            height: 4%;
             position: relative;
         }
     </style>
@@ -29,14 +30,14 @@
 <header>
     <div class="header_top">
         <div class="container">
-            <p>지금 가입하고 인기상품 <b>100원</b>에 받아가세요!</p>
+            <p>친구 초대하면 친구도 나도 적립금 <b>5000원!</b></p>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
             <div id="header" class="text-center">
-                <img src="../../../resources/img/market.jpg" alt=""/>
+                <a href="/"> <img src="../../../resources/img/market.jpg" alt=""/> </a>
             </div>
         </div>
     </div>
