@@ -14,6 +14,7 @@
             <a href="/save">회원가입</a>
             <a href="/login">로그인</a>
             <a href="/members">목록출력</a>
+            <a href="/ajax">ajax연습하기</a>
         </div>
     </div>
 </div>

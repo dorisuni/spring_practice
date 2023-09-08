@@ -37,7 +37,7 @@
 <%@include file="component/header.jsp"%>
 <%@include file="component/nav.jsp"%>
         <div class="row my-8 justify-content-center">
-            <div class="col-md-10 col-lg-5 my-4">
+            <div class="col-5 my-4">
                 <h1 class="text-center mb-5">로그인</h1>
                     <form id="frm" method="post" class="card p-3">
                             <div>

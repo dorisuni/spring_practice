@@ -13,6 +13,9 @@
 <body>
 <%@include file="component/header.jsp"%>
 <%@include file="component/nav.jsp"%>
+
+
+
     <h2>멤버 디테일 페이지</h2>
         ${member.id}
         ${member.memberEmail}

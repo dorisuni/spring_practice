@@ -73,3 +73,9 @@ create table member_table(
 	memberMobile varchar(30) not null
 );
 ```
+
+## naming rules
+id,class,function,name
+id,class: 두 단어 이상 연결시 -로 연결(member-email)
+function: 두 단어 이상 연결시 _로 연결(member_email)
+name: 두 단어 이상 연결시 camel case로 작성(memberEmail)

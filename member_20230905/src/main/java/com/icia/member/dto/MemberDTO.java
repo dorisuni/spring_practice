@@ -15,4 +15,6 @@ public class MemberDTO {
     private String memberName;
     private Date memberBirth;
     private String memberMobile;
+    private String memberBasicAddress;
+    private String memberDetailAddress;
 }
