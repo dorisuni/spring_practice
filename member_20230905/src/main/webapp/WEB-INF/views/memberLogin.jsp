@@ -31,26 +31,70 @@
             border-color: #8B00FF;
         }
 
+        .css-qaxuc4 {
+            display: block;
+            padding: 0px 10px;
+            text-align: center;
+            overflow: hidden;
+            width: 100%;
+            height: 54px;
+            border-radius: 3px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(95, 0, 128);
+            border: 0px none;
+        }
+
+        .css-hxorrg {
+            display: block;
+            padding: 0px 10px;
+            text-align: center;
+            overflow: hidden;
+            width: 100%;
+            height: 54px;
+            border-radius: 3px;
+            color: rgb(95, 0, 128);
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgb(95, 0, 128);
+        }
+
+        .css-1bb6q2p {
+            min-width: 1050px;
+            margin-top: 90px;
+            margin-bottom: 60px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .css-1axolzg {
+            width: 340px;
+            margin: 0px auto;
+            letter-spacing: -0.6px;
+        }
+
+        .css-i4t6me {
+            color: #333;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <%@include file="component/header.jsp"%>
 <%@include file="component/nav.jsp"%>
-        <div class="row my-8 justify-content-center">
-            <div class="col-5 my-4">
+        <div class="css-1bb6q2p">
+            <div class="css-1axolzg">
                 <h1 class="text-center mb-5">로그인</h1>
-                    <form id="frm" method="post" class="card p-3">
+                    <form id="frm" method="post" style="border:0 solid black">
                             <div>
-                            <input type="text" name="memberEmail" class="form-control mb-2" placeholder="이메일을 입력하세요."><br>
-                            <input type="password" name="memberPassword" class="form-control mb-2" placeholder="비밀번호를 입력하세요.">
+                            <input type="text" name="memberEmail" class="form-control mb-1" placeholder="이메일을 입력해주세요">
+                            <input type="password" name="memberPassword" class="form-control mb-1" placeholder="비밀번호를 입력해주세요">
                             </div>
-                        <div class="text-end">
-                            <a href="/search">아이디 찾기</a>|<a href="/search">비밀번호 찾기</a>
-                        </div>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="submit" class="btn-colour-1">로그인</button>
+                        <div class="text-end" class="css-i4t6me" style="font-size: 13px; margin-top: 10px; margin-bottom: 5px">
 
-                            <button href="/save" class="btn-colour-1">회원가입</button>
+                            <div class="css-i4t6me"><a style="color: #333; text-decoration: none
+" href="/search">아이디 찾기</a> | <a style="color: #333; text-decoration: none" href="/search">비밀번호 찾기</a></div>
+                        </div>
+                        <div>
+                            <button type="submit" class="css-qaxuc4 mb-1">로그인</button>
+                            <button href="/save" class="css-hxorrg">회원가입</button>
                         </div>
 
                     </form>
