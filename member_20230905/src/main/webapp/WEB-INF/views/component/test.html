@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>이중 Hover 메뉴</title>
 </head>
 <body>
-<div class="row">
-    <div class="col">
-        <div id="header" class="text-center">
-            <img src="../../../resources/img/market.jpg" alt=""/>
-        </div>
-    </div>
-</div>
-
+<ul class="menu">
+    <li class="menu-item">
+        <a href="#" class="menu-link">메뉴1</a>
+        <ul class="sub-menu">
+            <li class="sub-menu-item">
+                <a href="#" class="sub-menu-link">서브메뉴1-1</a>
+                <ul class="sub-sub-menu">
+                    <li><a href="#">서브-서브메뉴1</a></li>
+                    <li><a href="#">서브-서브메뉴2</a></li>
+                    <li><a href="#">서브-서브메뉴3</a></li>
+                    <li><a href="#">서브-서브메뉴4</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="sub-menu-link">서브메뉴1-2</a></li>
+        </ul>
+    </li>
+    <li class="menu-item">
+        <a href="#" class="menu-link">메뉴2</a>
+        <ul class="sub-menu">
+            <li><a href="#" class="sub-menu-link">서브메뉴2-1</a></li>
+            <li><a href="#" class="sub-menu-link">서브메뉴2-2</a></li>
+        </ul>
+    </li>
+</ul>
 </body>
-<script>
-    const num = 10;
-    console.log(num);
-
-
-
-    // 날짜 확인하기
-    const date = new Date();
-    console.log(date.getFullYear());
-
-    const footer = document.getElementById("footer");
-    footer.innerHTML = "<p>&copy; " + date.getFullYear() + "&nbsp dorisuni All rights reserved.<p>"
-    // id # class . css선택자 문법
-    const footer1 = document.querySelector("#footer");
-
-</script>
 </html>

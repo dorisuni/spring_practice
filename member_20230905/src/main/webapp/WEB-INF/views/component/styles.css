@@ -1,0 +1,78 @@
+/* styles.css */
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    background-color: #f0f0f0;
+    display: block;
+}
+
+.sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu-item {
+    position: relative;
+}
+
+.sub-menu-link {
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    display: block;
+}
+
+/* 서브-서브메뉴 스타일링 */
+.sub-sub-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out; /* 애니메이션 효과 추가 */
+}
+
+.sub-menu-item:hover .sub-sub-menu {
+    display: block;
+}
+
+.sub-sub-menu li {
+    padding: 10px;
+}
+
+.sub-sub-menu li:hover {
+    background-color: #ccc;
+}
+
+/* 왼쪽에서 오른쪽으로 나타나는 애니메이션 효과 */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
