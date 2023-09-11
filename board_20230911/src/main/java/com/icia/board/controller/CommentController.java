@@ -1,2 +1,4 @@
-package com.icia.board.controller;public class CommentController {
+package com.icia.board.controller;
+
+public class CommentController {
 }

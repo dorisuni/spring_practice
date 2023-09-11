@@ -3,14 +3,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace 반드시 작성! -->
-<mapper namespace="Board">
-    <insert id="save" parameterType="com.icia.board.dto.BoardDTO">
-        insert into board_table(boardWriter,boardPass,boardTitle,boardContents)
-        values(#{boardWriter}, #{boardPass},#{boardTitle},#{boardContents})
-    </insert>
-    <select id="findAll" resultType="board">
-        select * from board_table
-    </select>
+<mapper namespace="Comment">
+<!--    <insert id="save" parameterType="com.icia.board.dto.BoardDTO">-->
+<!--        insert into board_table(boardWriter,boardPass,boardTitle,boardContents)-->
+<!--        values(#{boardWriter}, #{boardPass},#{boardTitle},#{boardContents})-->
+<!--    </insert>-->
+<!--    <select id="findAll" resultType="board">-->
+<!--        select * from board_table-->
+<!--    </select>-->
 <!--    <select id="login" parameterType="com.icia.member.dto.MemberDTO" resultType="com.icia.member.dto.MemberDTO">-->
 <!--        select * from member_table where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}-->
 <!--    </select>-->

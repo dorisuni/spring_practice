@@ -1,26 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
+<head>
+    <title>글작성 게시판</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
 <body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>게시판</h4>
+            </div>
+        </div>
+        <!-- 검색창과 버튼 -->
+        <div class="row mt-4 justify-content-end">
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option value="writer">작성자</option>
+                    <option value="title">글제목</option>
+                    <option value="contents">글내용</option>
+                    <!-- 다른 검색 옵션들을 필요에 따라 추가 -->
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="검색어 입력">
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary">검색</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-1">글번호</div>
+            <div class="col-md-3">글제목</div>
+            <div class="col-md-2">작성자</div>
+            <div class="col-md-2">조회수</div>
+            <div class="col-md-4">작성일</div>
+        </div>
+        <%@include file="boardList.jsp"%>
 
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
-<%--<div class="row">--%>
-<%--    <div class="col">--%>
-<%--        <div class="text-center">--%>
-<%--            <h2>어서오세요 멤버관리!</h2>--%>
-<%--            로그인이메일: ${sessionScope.loginEmail}<br>--%>
-<%--            model에 담은 이메일: ${email} <br>--%>
-<%--            <a href="/save">회원가입</a>--%>
-<%--            <a href="/login">로그인</a>--%>
-<%--            <a href="/members">목록출력</a>--%>
-<%--            <a href="/ajax">ajax연습하기</a>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 
 
-<%@include file="component/footer.jsp"%>
+    </div>
 
 </body>
 </html>

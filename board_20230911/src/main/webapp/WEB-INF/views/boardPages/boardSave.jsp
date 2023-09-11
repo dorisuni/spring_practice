@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>게시글 작성하기!</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 <div class="container mt-5">
@@ -43,4 +45,5 @@
 </div>
 
 </body>
+
 </html>

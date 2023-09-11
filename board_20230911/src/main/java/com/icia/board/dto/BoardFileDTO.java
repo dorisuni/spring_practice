@@ -1,2 +1,4 @@
-package com.icia.board.dto;public class BoardFileDTO {
+package com.icia.board.dto;
+
+public class BoardFileDTO {
 }
