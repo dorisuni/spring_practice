@@ -46,7 +46,7 @@
                 </tbody>
             </table>
             <a class="btn btn-primary" href="/board/update?id=${board.id}">수정</a>
-            <a class="btn btn-danger" href="/delete?id=${board.id}">삭제</a>
+            <a class="btn btn-danger" href="/board/delete/${board.id}">삭제</a>
         </div>
     </div>
 </div>

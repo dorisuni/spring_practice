@@ -1,7 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" editBeforeRun="true" APPLICATION_SERVER_NAME="Tomcat 9.0.80" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="corretto-16">
+    <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
-      <artifact name="member_20230905:war exploded">
+      <artifact name="board_20230911:war exploded">
         <settings>
           <option name="CONTEXT_PATH" value="/" />
         </settings>
@@ -83,7 +84,7 @@
     <method v="2">
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="member_20230905:war exploded" />
+        <artifact name="board_20230911:war exploded" />
       </option>
     </method>
   </configuration>

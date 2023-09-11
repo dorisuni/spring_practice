@@ -42,7 +42,6 @@ public class BoardController {
         boardDTO.setBoardHits(boardDTO.getBoardHits()+1);
         boardService.incrementBoardHits(id);
         model.addAttribute("board", boardDTO);
-
         return "boardDetail";
     }
 
@@ -51,7 +50,8 @@ public class BoardController {
     public String deleteBoard(@PathVariable Long id) {
         // 글 삭제 로직을 구현
         // 삭제 후, 리다이렉트 또는 결과 페이지 반환
-        return "redirect:/board/";
+        boardService.delete(id);
+        return "redirect:/";
     }
 
     // 수정 화면 출력 - boardUpdate.jsp (GET)
@@ -65,11 +65,13 @@ public class BoardController {
 
     // 수정 처리 (POST)
     @PostMapping("/update")
-    public String updateBoard(@ModelAttribute BoardDTO boardDTO) {
+    public String updateBoard(@ModelAttribute BoardDTO boardDTO, Model model) {
         // 글 수정 로직을 구현
         // 수정 후, 리다이렉트 또는 결과 페이지 반환
+        System.out.println("boardDTO = " + boardDTO);
         boardService.update(boardDTO);
-        return "redirect:/boardDetail/";
+        model.addAttribute("id",boardDTO.getId());
+        return "redirect:/board/detail";
     }
 
     // 검색 - boardList.jsp (GET)
