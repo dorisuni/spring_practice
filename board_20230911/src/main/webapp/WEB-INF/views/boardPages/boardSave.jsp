@@ -21,7 +21,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <form action="/board/save" method="POST">
+            <form action="/board/save1" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="boardTitle" class="form-label">제목</label>
                     <input type="text" class="form-control" id="boardTitle" name="boardTitle" required>
@@ -37,6 +37,9 @@
                 <div class="mb-3">
                     <label for="boardContents" class="form-label">글 내용</label>
                     <textarea class="form-control" id="boardContents" name="boardContents" rows="6" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="file" id="boardFile" name="boardFile">
                 </div>
                 <button type="submit" class="btn btn-primary">작성하기</button>
             </form>

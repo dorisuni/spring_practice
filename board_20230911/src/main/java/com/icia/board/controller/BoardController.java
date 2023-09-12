@@ -2,12 +2,15 @@ package com.icia.board.controller;
 
 import com.icia.board.dto.BoardDTO;
 import com.icia.board.dto.CommentDTO;
+import com.icia.board.dto.PageDTO;
 import com.icia.board.service.BoardService;
 import com.icia.board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -26,9 +29,10 @@ public class BoardController {
     }
 
     // 글 작성 처리 (POST)
-    @PostMapping("/save")
-    public String saveBoard(@ModelAttribute BoardDTO boardDTO) {
-        boardService.save(boardDTO);
+    @PostMapping("/save1")
+    public String saveBoard(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        System.out.println("boardDTO = " + boardDTO);
+//        boardService.save(boardDTO);
         return "redirect:/";
     }
 
@@ -85,12 +89,16 @@ public class BoardController {
 
     // 페이징 처리 - boardPaging.jsp (GET)
     @GetMapping("/paging")
-    public String boardPaging(@RequestParam int page, Model model) {
-        // 페이징 처리 로직을 구현
-//        List<BoardDTO> boardList = ...; // 페이지에 해당하는 글 목록을 가져오는 로직을 구현해야 함
-//        model.addAttribute("boardList", boardList);
-        return "boardPaging";
+    public String boardPaging(@ModelAttribute PageDTO pageDTO, Model model) {
+        List<BoardDTO> boardDTOList = boardService.getListPage(pageDTO);
+        model.addAttribute("pageDTO",pageDTO);
+        model.addAttribute("boardList",boardDTOList);
+        System.out.println("boardDTOList = " + boardDTOList);
+        return "index";
     }
+
+
+
 
     // 댓글 작성 (POST)
     @PostMapping("/comment/save")

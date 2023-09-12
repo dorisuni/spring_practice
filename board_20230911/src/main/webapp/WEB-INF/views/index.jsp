@@ -12,23 +12,6 @@
                 <h4>게시판</h4>
             </div>
         </div>
-        <!-- 검색창과 버튼 -->
-        <div class="row mt-4 justify-content-end">
-            <div class="col-md-4">
-                <select class="form-select">
-                    <option value="writer">작성자</option>
-                    <option value="title">글제목</option>
-                    <option value="contents">글내용</option>
-                    <!-- 다른 검색 옵션들을 필요에 따라 추가 -->
-                </select>
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="검색어 입력">
-            </div>
-            <div class="col-md-4">
-                <button class="btn btn-primary">검색</button>
-            </div>
-        </div>
         <div class="row mt-3">
             <div class="col-md-1">글번호</div>
             <div class="col-md-3">글제목</div>
@@ -36,11 +19,18 @@
             <div class="col-md-2">조회수</div>
             <div class="col-md-4">작성일</div>
         </div>
-        <%@include file="boardList.jsp"%>
-
-
-
+        <%@ include file="boardList.jsp" %>
+        <div class="row justify-content-start m-3">
+            <a href="/board/save" id="save" class="btn btn-success btn-lg">글 작성하기</a>
+        </div>
+        <%@ include file="boardPages/boardPaging.jsp" %>
     </div>
 
 </body>
+<script>
+    const saveButton = document.getElementById("save");
+    saveButton.addEventListener("click", function() {
+        location.href = "/save";
+    });
+</script>
 </html>

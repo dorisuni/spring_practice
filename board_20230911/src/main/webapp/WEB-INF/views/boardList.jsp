@@ -20,34 +20,14 @@
     <div class="row mt-2">
         <div class="col-md-1">${board.id}</div>
         <div class="col-md-3">
-            <a href="board/detail?id=${board.id}" >${board.boardTitle}</a>
+            <a href="/board/detail?id=${board.id}" >${board.boardTitle}</a>
         </div>
         <div class="col-md-2">${board.boardWriter}</div>
         <div class="col-md-2">${board.boardHits}</div>
         <div class="col-md-4">${board.createdAt}</div>
     </div>
 </c:forEach>
-<!-- Pagination -->
-<div class="col">
-<div class="row justify-content-start m-3">
-    <a href="/board/save" id="save" class="btn btn-success btn-lg">글 작성하기</a>
-</div>
-<div class="row mt-4">
-    <div class="col-md-12">
-        <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="#">이전</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">다음</a></li>
-        </ul>
-    </div>
-</div>
-</div>
 
-<script>
-    const saveButton = document.getElementById("save");
-    saveButton.addEventListener("click", function() {
-        location.href = "/save";
-    });
-</script>
+
+
+
