@@ -5,6 +5,7 @@
     <title>Title</title>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 </head>
 <body>
 <!-- Pagination -->
@@ -37,10 +38,12 @@
     <span>${totalEndPage}</span>
 </div>
 
-<div class="pagination">
-    <ul id="pagination-list">
-        <!-- 페이지 번호가 여기에 동적으로 추가됩니다 -->
-    </ul>
+<div class="row mt-4">
+    <div class="col-md-12">
+        <ul class="pagination justify-content-center flex-wrap" id="pagination-list">
+            <!-- 페이지 번호가 여기에 동적으로 추가됩니다 -->
+        </ul>
+    </div>
 </div>
 
 </body>
@@ -48,7 +51,7 @@
     // 전체 페이지 수와 현재 페이지 번호를 설정합니다.
     var total = ${total}; // 전체 페이지 수를 가져오는 코드
     var currentPage = 1; // 현재 페이지 번호
-    var visiblePages = 20; // 보여줄 페이지 번호 개수
+    var visiblePages = 10; // 보여줄 페이지 번호 개수
 
     var paginationList = document.getElementById("pagination-list");
 
