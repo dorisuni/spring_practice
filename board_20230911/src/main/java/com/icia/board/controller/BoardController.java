@@ -29,7 +29,7 @@ public class BoardController {
     }
 
     // 글 작성 처리 (POST)
-    @PostMapping("/save1")
+    @PostMapping("/save")
     public String saveBoard(@ModelAttribute BoardDTO boardDTO) throws IOException {
         System.out.println("boardDTO = " + boardDTO);
         boardService.save(boardDTO);
@@ -91,6 +91,12 @@ public class BoardController {
     @GetMapping("/paging")
     public String boardPaging(@ModelAttribute PageDTO pageDTO, Model model) {
         List<BoardDTO> boardDTOList = boardService.getListPage(pageDTO);
+        int total = boardService.getTotal(pageDTO);
+        System.out.println("total = " + total);
+        int totalEndPage = (int) Math.ceil((double) total /pageDTO.getPageSize());
+        System.out.println("totalEndPage = " + totalEndPage);
+        model.addAttribute("total",total);
+        model.addAttribute("totalEndPage",totalEndPage);
         model.addAttribute("pageDTO",pageDTO);
         model.addAttribute("boardList",boardDTOList);
         System.out.println("boardDTOList = " + boardDTOList);

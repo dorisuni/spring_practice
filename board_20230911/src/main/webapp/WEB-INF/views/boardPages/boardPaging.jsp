@@ -3,14 +3,15 @@
 <html>
 <head>
     <title>Title</title>
-
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
 <!-- Pagination -->
 <form id="frm" action="/board/paging" method="get">
     <input type="hidden" name="offset" value="0">
     <input type="hidden" id="pageCheck" name="page" value="1">
-    <input type="hidden" name="pageSize" value="2">
+    <input type="hidden" name="pageSize" value="20">
     <input type="hidden" id="keyCheck" name="key" class="form-control" value="${pageDTO.key}">
     <input type="hidden" id="queryCheck" name="query" class="form-control" value="${pageDTO.query}">
 
@@ -32,22 +33,52 @@
         </div>
     </div>
 </form>
-
-<div class="col">
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <ul class="pagination justify-content-center">
-                <li class="page-item"><button class="page-link" data-page="prev">이전</button></li>
-                <li class="page-item"><button class="page-link" data-page="1">1</button></li>
-                <li class="page-item"><button class="page-link" data-page="2">2</button></li>
-                <li class="page-item"><button class="page-link" data-page="3">3</button></li>
-                <li class="page-item"><button class="page-link" data-page="next">다음</button></li>
-            </ul>
-        </div>
-    </div>
+<div>
+    <span>${totalEndPage}</span>
 </div>
+
+<div class="pagination">
+    <ul id="pagination-list">
+        <!-- 페이지 번호가 여기에 동적으로 추가됩니다 -->
+    </ul>
+</div>
+
 </body>
 <script>
+    // 전체 페이지 수와 현재 페이지 번호를 설정합니다.
+    var total = ${total}; // 전체 페이지 수를 가져오는 코드
+    var currentPage = 1; // 현재 페이지 번호
+    var visiblePages = 20; // 보여줄 페이지 번호 개수
+
+    var paginationList = document.getElementById("pagination-list");
+
+    // 페이지 번호를 계산하여 동적으로 생성합니다.
+    var startPage = Math.max(currentPage - visiblePages / 2, 1);
+    var endPage = Math.min(startPage + visiblePages - 1, total);
+
+    for (var i = startPage; i <= endPage; i++) {
+        var listItem = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = "page.jsp?page=" + i;
+        link.textContent = i;
+
+        if (i === currentPage) {
+            listItem.classList.add("active");
+        }
+
+        listItem.appendChild(link);
+        paginationList.appendChild(listItem);
+
+        link.addEventListener("click", function (event) {
+            // 페이지 링크를 클릭할 때의 동작을 정의합니다.
+            event.preventDefault();
+            var page = parseInt(this.textContent);
+            // 페이지 이동 로직을 추가하세요.
+            // 예: window.location.href = "page.jsp?page=" + page;
+        });
+    }
+
+
     const searchButton = document.getElementById("searchButton");
     const searchForm = document.getElementById("frm");
 
@@ -59,6 +90,8 @@
         // 선택한 값을 hidden 입력란에 설정
         document.getElementById("keyCheck").value = selectedOption;
         document.getElementById("queryCheck").value = searchInput;
+        document.getElementById("pageCheck").value = 1;
+        document.getElementById("offset").value=0;
 
         // 여기에서 원하는 작업 수행
         // 예: 검색을 수행하거나 페이지 이동 등
@@ -68,37 +101,37 @@
 
 
 
-    let frm = document.getElementById("frm");
-    // 페이지 이동 버튼 클릭 이벤트 핸들러
-    document.addEventListener("DOMContentLoaded", function () {
-        let pageInput = document.getElementById("pageCheck");
-        var paginationLinks = document.querySelectorAll(".page-link"); // 페이지 링크 요소들
-        paginationLinks.forEach(function (link) {
-            link.addEventListener("click", function (e) {
-                e.preventDefault();
-                // console.log("현재페이지값:"+pageInput.value)
-                var dataPage = link.getAttribute("data-page"); // 클릭한 페이지의 데이터 속성 값
-                if (dataPage === "prev") {
-                    // 이전 페이지 버튼 클릭 시
-                    if (pageInput.value > 1) {
-                        pageInput.value = parseInt(pageInput.value) - 1;
-                    }
-                } else if (dataPage === "next") {
-                    // 다음 페이지 버튼 클릭 시
-                    pageInput.value = parseInt(pageInput.value) + 1;
-                } else {
-                    // 페이지 번호를 직접 클릭한 경우
-                    pageInput.value = dataPage;
-                }
-                // console.log(pageInput)// 페이지 번호를 입력하는 input 요소
-
-                // 페이지 번호를 변경한 후 폼을 제출하거나 필요한 작업을 수행할 수 있습니다.
-
-                console.log(frm)
-
-            });
-        });
-    });
+    // let frm = document.getElementById("frm");
+    // // 페이지 이동 버튼 클릭 이벤트 핸들러
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     let pageInput = document.getElementById("pageCheck");
+    //     var paginationLinks = document.querySelectorAll(".page-link"); // 페이지 링크 요소들
+    //     paginationLinks.forEach(function (link) {
+    //         link.addEventListener("click", function (e) {
+    //             e.preventDefault();
+    //             // console.log("현재페이지값:"+pageInput.value)
+    //             var dataPage = link.getAttribute("data-page"); // 클릭한 페이지의 데이터 속성 값
+    //             if (dataPage === "prev") {
+    //                 // 이전 페이지 버튼 클릭 시
+    //                 if (pageInput.value > 1) {
+    //                     pageInput.value = parseInt(pageInput.value) - 1;
+    //                 }
+    //             } else if (dataPage === "next") {
+    //                 // 다음 페이지 버튼 클릭 시
+    //                 pageInput.value = parseInt(pageInput.value) + 1;
+    //             } else {
+    //                 // 페이지 번호를 직접 클릭한 경우
+    //                 pageInput.value = dataPage;
+    //             }
+    //             // console.log(pageInput)// 페이지 번호를 입력하는 input 요소
+    //
+    //             // 페이지 번호를 변경한 후 폼을 제출하거나 필요한 작업을 수행할 수 있습니다.
+    //
+    //             console.log(frm)
+    //
+    //         });
+    //     });
+    // });
 </script>
 
 </html>

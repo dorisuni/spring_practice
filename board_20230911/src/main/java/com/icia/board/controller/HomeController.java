@@ -24,6 +24,10 @@ public class HomeController {
         System.out.println("pageDTO = " + pageDTO);
         int total = boardService.getTotal(pageDTO);
         System.out.println("total = " + total);
+        int totalEndPage = (int) Math.ceil((double) total /pageDTO.getPageSize());
+        System.out.println("totalEndPage = " + totalEndPage);
+        model.addAttribute("total",total);
+        model.addAttribute("totalEndPage",totalEndPage);
         List<BoardDTO> boardDTOList = boardService.getListPage(pageDTO);
         model.addAttribute("boardList", boardDTOList);
         System.out.println("boardDTOList = " + boardDTOList);

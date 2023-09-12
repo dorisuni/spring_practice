@@ -54,7 +54,7 @@ public class BoardService {
             boardFileDTO.setStoredFileName(storedFileName);
             boardFileDTO.setBoardId(savedBoard.getId());
             // 파일 저장용 폴더에 파일 저장 처리
-            String savePath = "D:\\spring_img\\" + storedFileName;
+            String savePath = "C:\\spring_img\\" + storedFileName;
             boardFile.transferTo(new File(savePath));
             // board_file_table 저장 처리
             boardRepository.saveFile(boardFileDTO);

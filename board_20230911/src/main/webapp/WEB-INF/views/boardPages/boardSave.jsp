@@ -21,7 +21,7 @@
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <form action="/board/save1" method="POST" enctype="multipart/form-data">
+            <form action="/board/save" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="boardTitle" class="form-label">제목</label>
                     <input type="text" class="form-control" id="boardTitle" name="boardTitle" required>
