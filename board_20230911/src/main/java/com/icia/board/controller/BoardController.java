@@ -32,7 +32,7 @@ public class BoardController {
     @PostMapping("/save1")
     public String saveBoard(@ModelAttribute BoardDTO boardDTO) throws IOException {
         System.out.println("boardDTO = " + boardDTO);
-//        boardService.save(boardDTO);
+        boardService.save(boardDTO);
         return "redirect:/";
     }
 

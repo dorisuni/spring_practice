@@ -9,7 +9,8 @@
         values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
     </insert>
     <insert id="saveFile" parameterType="boardFile">
-        insert into board_file_table(originalFileName, storedFileName, boardId) values (#{originalFileName},#{storedFileName},#{boardID})
+        insert into board_file_table(originalFileName, storedFileName, boardId)
+        values (#{originalFileName}, #{storedFileName}, #{boardId})
     </insert>
 
     <select id="findAll" resultType="board">

@@ -10,7 +10,7 @@ import lombok.ToString;
 public class PageDTO {
     private int offset;
     private int page;
-    private int pageSize = 2;
+    private int pageSize = 20;
     private String key;
     private String query="";
 
