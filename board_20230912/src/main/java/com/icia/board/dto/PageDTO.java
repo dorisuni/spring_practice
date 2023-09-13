@@ -11,7 +11,7 @@ public class PageDTO {
     private int offset;
     private int page = 1;
     private int pageSize = 10;
-    private String key="";
+    private String key;
     private String query="";
 
 

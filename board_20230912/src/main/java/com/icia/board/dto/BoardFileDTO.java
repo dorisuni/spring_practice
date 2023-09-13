@@ -7,10 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CommentDTO {
+public class BoardFileDTO {
     private Long id;
-    private String commentWriter;
-    private String commentContents;
-    private String createdAt;
     private Long boardId;
+    private String originalFileName;
+    private String storedFileName;
 }

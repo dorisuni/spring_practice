@@ -15,29 +15,18 @@
         }
     </style>
 </head>
-<table class="table table-striped">
-    <thead>
-    <tr class="table-primary">
-        <th scope="col">글번호</th>
-        <th scope="col">글제목</th>
-        <th scope="col">작성자</th>
-        <th scope="col">조회수</th>
-        <th scope="col">작성일</th>
-    </tr>
-    </thead>
 <!-- 게시물 목록을 반복하면서 표시 -->
 <c:forEach items="${boardList}" var="board">
-    <tr>
-        <th scope="row">${board.id}</th>
-        <th>
+    <div class="row mt-2">
+        <div class="col-md-1">${board.id}</div>
+        <div class="col-md-3">
             <a href="/board/detail?id=${board.id}" >${board.boardTitle}</a>
-        </th>
-        <th>${board.boardWriter}</th>
-        <th>${board.boardHits}</th>
-        <th>${board.createdAt}</th>
-    </tr>
+        </div>
+        <div class="col-md-2">${board.boardWriter}</div>
+        <div class="col-md-2">${board.boardHits}</div>
+        <div class="col-md-4">${board.createdAt}</div>
+    </div>
 </c:forEach>
-</table>
 
 
 

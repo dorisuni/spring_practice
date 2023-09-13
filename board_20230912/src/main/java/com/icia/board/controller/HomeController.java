@@ -16,6 +16,7 @@ public class HomeController {
     BoardService boardService;
     @GetMapping("/")
     String listBoards(Model model){
+
         PageDTO pageDTO = new PageDTO();
         pageDTO.setOffset(0);
         pageDTO.setKey("boardWriter");

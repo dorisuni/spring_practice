@@ -23,6 +23,12 @@ public class BoardController {
     BoardService boardService;
 
 
+    @GetMapping("/")
+    public String findAll(@RequestParam(value = "page",required = false,defaultValue = "1") int page,Model model{
+        List<BoardDTO> boardDTOList = boardService.pagingList(page);
+
+    }
+
     // 글 작성 페이지 출력 - boardSave.jsp (GET)
     @GetMapping("/save")
     public String saveForm() {
@@ -91,7 +97,6 @@ public class BoardController {
     // 페이징 처리 - boardPaging.jsp (GET)
     @GetMapping("/paging")
     public String boardPaging(@ModelAttribute PageDTO pageDTO, Model model) {
-        System.out.println("pageDTO = " + pageDTO);
         List<BoardDTO> boardDTOList = boardService.getListPage(pageDTO);
         int total = boardService.getTotal(pageDTO);
         System.out.println("total = " + total);
@@ -104,6 +109,7 @@ public class BoardController {
         System.out.println("boardDTOList = " + boardDTOList);
         return "index";
     }
+
 
 
 
