@@ -96,7 +96,6 @@
                             <button type="submit" class="css-qaxuc4 mb-1">로그인</button>
                             <button href="/save" class="css-hxorrg">회원가입</button>
                         </div>
-
                     </form>
             </div>
         </div>

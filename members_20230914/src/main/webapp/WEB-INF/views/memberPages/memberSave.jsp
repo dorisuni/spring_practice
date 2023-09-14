@@ -142,13 +142,13 @@
     </style>
 </head>
 <body>
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
+<%@include file="../component/header.jsp"%>
+<%@include file="../component/nav.jsp"%>
 
 <div class="css-mhmtvt">
             <div class="css-o5dw7d e1ovi4140">회원가입</div>
             <div class="css-rb0i47"><span class="css-qq9ke6">*</span>필수입력사항</div>
-            <form id="frm" action="/save" method="post" class="card p-3">
+            <form id="frm" action="/member/save" method="post" class="card p-3">
                 <div class="row">
                     <div class="col-3 col-md-3 col-sm-3">
                         <span>이메일</span><span class="essential">* </span>
@@ -229,7 +229,7 @@
 
 
 
-<%@include file="component/footer.jsp"%>
+<%@include file="../component/footer.jsp"%>
 
 </body>
 <script>
@@ -284,7 +284,7 @@
         }else{
             $.ajax({
                 type:"post",
-                url: "/checkDuplicate",
+                url: "/member/duplicate-check",
                 data: {
                     memberEmail: memberEmail,
                 },
@@ -292,11 +292,11 @@
                 //따라서 컨트롤러에서 return받는건 값이 다르므로, 이동하기 위해서는 location을 써야함.
                 success: function (res){
                     console.log("성공",res);
-                    alert(res);
+                    alert("사용가능한 이메일 주소입니다.");
                 },
                 error: function (res){
                     console.log("실패",res);
-                    alert(res.responseText);
+                    alert("중복된 이메일 주소입니다.");
                     let email = document.getElementById('checkEmail');
                     email.style.cssText = 'color: red; display: block';
                     email.innerHTML = "중복된 이메일 주소입니다.";

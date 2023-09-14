@@ -11,10 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
-    <h2>학생수정을 위한 페이지</h2>
-    <form action="/update" method="post">
+<%@include file="../component/header.jsp"%>
+<%@include file="../component/nav.jsp"%>
+    <h2>멤버수정을 위한 페이지</h2>
+    <form action="/member/update" method="post">
         <input type="hidden" name="id" value = "${member.id}">
         이메일 <input type="text" name="memberEmail" value = "${member.memberEmail}" readonly> <br>
         비밀번호 <input type="password" name="memberPassword" value = "${member.memberPassword}"><br>
@@ -23,6 +23,6 @@
         전화번호 <input type="text" name="memberMobile" value = "${member.memberMobile}"><br>
         <input type="submit" value="수정">
     </form>
-<%@include file="component/footer.jsp"%>
+<%@include file="../component/footer.jsp"%>
 </body>
 </html>

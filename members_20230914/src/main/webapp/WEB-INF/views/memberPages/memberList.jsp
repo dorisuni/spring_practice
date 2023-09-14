@@ -104,8 +104,8 @@
 
 </style>
 <body>
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
+<%@include file="../component/header.jsp"%>
+<%@include file="../component/nav.jsp"%>
 
 
 <div class="container">
@@ -161,7 +161,7 @@
         <br>
     </c:forEach>
 
-<%@include file="component/footer.jsp"%>
+<%@include file="../component/footer.jsp"%>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.icia.board.dto;
+package com.idea.board.dto;
 
 import lombok.Getter;
 import lombok.Setter;

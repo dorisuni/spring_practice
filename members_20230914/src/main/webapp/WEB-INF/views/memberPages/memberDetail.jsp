@@ -11,8 +11,8 @@
     <title>멤버 디테일 페이지</title>
 </head>
 <body>
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
+<%@include file="../component/header.jsp"%>
+<%@include file="../component/nav.jsp"%>
 
 
 
@@ -25,7 +25,7 @@
         ${member.memberMobile}
     <a href="/update?id=${member.id}">정보수정</a>
     <a href="/logout">로그아웃</a>
-<%@include file="component/footer.jsp"%>
+<%@include file="../component/footer.jsp"%>
 
 </body>
 </html>

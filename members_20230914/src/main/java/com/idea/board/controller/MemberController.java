@@ -45,6 +45,8 @@ public class MemberController {
             model.addAttribute("member",memberDTO);
             //로그인 성공시 사용자의 이메일을 세션에 저장
             session.setAttribute("loginEmail",memberDTO.getMemberEmail());
+            session.setAttribute("loginId",memberDTO.getId());
+
 
             return "memberPages/memberMain";
         } else {
@@ -114,4 +116,6 @@ public class MemberController {
         return "redirect:/";
 
     }
+
+
 }

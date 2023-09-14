@@ -13,8 +13,8 @@
     <title>멤버 로그인 완료 페이지</title>
 </head>
 <body>
-<%@include file="component/header.jsp"%>
-<%@include file="component/nav.jsp"%>
+<%@include file="../component/header.jsp"%>
+<%@include file="../component/nav.jsp"%>
 <h2>멤버 로그인 완료 페이지</h2>
 <%--    세션값꺼낼때는--%>
     로그인이메일: ${sessionScope.loginEmail}<br>
@@ -30,7 +30,7 @@
     ${member.memberName} <br>
     ${member.memberBirth} <br>
     ${member.memberMobile} <br>
-<%@include file="component/footer.jsp"%>
+<%@include file="../component/footer.jsp"%>
 
 </body>
 </html>
