@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 반드시 작성! -->
+<mapper namespace="Board">
+    <insert id="save" parameterType="board" useGeneratedKeys="true" keyProperty="id">
+        insert into board_table(boardWriter, boardPass, boardTitle, boardContents, fileAttached)
+        values (#{boardWriter}, #{boardPass}, #{boardTitle}, #{boardContents}, #{fileAttached})
+    </insert>
+    <insert id="saveFile" parameterType="boardFile">
+        insert into board_file_table(originalFileName, storedFileName, boardId)
+        values (#{originalFileName}, #{storedFileName}, #{boardId})
+    </insert>
+
+    <select id="findAll" resultType="board">
+        select id, boardWriter,boardTitle,date_format(createdAt,"%y-%m-%d %h-%i-%s") as createAt,boardHits from board_table
+        order by id desc
+    </select>
+<!--    <select id="login" parameterType="com.icia.member.dto.MemberDTO" resultType="com.icia.member.dto.MemberDTO">-->
+<!--        select * from member_table where memberEmail=#{memberEmail} and memberPassword=#{memberPassword}-->
+<!--    </select>-->
+    <select id="findById" parameterType="Long" resultType="board">
+        select * from board_table where id=#{id}
+    </select>
+<!--    <select id="findByEmail" parameterType="String" resultType="com.icia.member.dto.MemberDTO">-->
+<!--        select * from member_table where memberEmail= #{memberEmail}-->
+<!--    </select>-->
+    <update id="update" parameterType="com.icia.board.dto.BoardDTO">
+        update board_table set boardTitle=#{boardTitle}, boardContents= #{boardContents}
+                                where id=#{id}
+    </update>
+
+    <update id="updateHits" parameterType="Long">
+        update board_table set boardHits = boardHits + 1 where id = #{id}
+    </update>
+
+    <update id="incrementBoardHits" parameterType="Long">
+        update board_table set boardHits = boardHits +1 where id=#{id}
+     </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from board_table where where id=#{id}
+    </delete>
+
+    <select id="getTotal" parameterType="com.icia.board.dto.PageDTO" resultType="int">
+        SELECT COUNT(*) FROM board_table where ${key} like CONCAT('%', #{query}, '%')
+    </select>
+
+    <select id="getListPage" parameterType="com.icia.board.dto.PageDTO" resultType="board">
+        select * from board_table where ${key} like CONCAT('%', #{query}, '%') LIMIT #{pageSize} OFFSET #{offset}
+    </select>
+
+    <select id="findFile" parameterType="Long" resultType="boardFile">
+        select * from board_file_table where boardId = #{boardId}
+    </select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
