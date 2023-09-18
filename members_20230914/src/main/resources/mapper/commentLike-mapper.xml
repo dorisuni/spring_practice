@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-</beans>
+<mapper namespace="CommentLike">
+    <!-- 좋아요 -->
+    <!-- 댓글 추천 시 Like 테이블에 insert -->
+    <insert id="insertLike" parameterType="commentLike">
+        insert into comment_like_table(memberId,commentId)
+        values(#{memberId},#{commentId})
+    </insert>
+    <!-- 댓글 추천취소 시 delete -->
+    <delete id="deleteLike" parameterType="commentLike">
+        delete from comment_like_table where memberId = #{memberId} and commentId = #{commentId}
+    </delete>
+    <!-- 댓글 추천 중복방지 select문 -->
+    <select id="findAll" parameterType="Long" resultType="commentLike">
+        select * from comment_like_table where memberId = #{memberId}
+    </select>
+
+    <select id="find" parameterType="commentLike" resultType="commentLike">
+        select * from comment_like_table where memberId = #{memberId} and commentId= #{commentId}
+    </select>
+
+
+</mapper>

@@ -6,6 +6,8 @@
         <typeAlias type="com.idea.board.dto.BoardDTO" alias="board"></typeAlias>
         <typeAlias type="com.idea.board.dto.BoardFileDTO" alias="boardFile"></typeAlias>
         <typeAlias type="com.idea.board.dto.CommentDTO" alias="comment"></typeAlias>
+        <typeAlias type="com.idea.board.dto.CommentLikeDTO" alias="commentLike"></typeAlias>
         <typeAlias type="com.idea.board.dto.MemberDTO" alias="member"></typeAlias>
+
     </typeAliases>
 </configuration>

@@ -8,13 +8,24 @@
         values (#{commentWriter}, #{commentContents}, #{boardId})
     </insert>
     <select id="findAll" parameterType="Long" resultType="comment">
-        select id, commentWriter, commentContents,
+        select id, commentWriter, commentContents,likeAmount,
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
-        from comment_table where boardId = #{boardId} order by id desc
+        from comment_table where boardId = #{boardId} order by id
     </select>
     <select id="findById" parameterType="comment" resultType="comment">
-        select id, commentWriter, commentContents,
+        select id, commentWriter, commentContents,likeAmount,
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
-        from comment_table where boardId = #{boardId} order by id desc
+        from comment_table where boardId = #{boardId} order by id
     </select>
+    <!-- 댓글 좋아요 -->
+    <update id="updateLikeAmount" parameterType="Long">
+        update comment_table set likeAmount = likeAmount + 1 where id = #{id}
+    </update>
+    <!-- 댓글 좋아요취소 -->
+    <update id="deleteLikeAmount" parameterType="Long">
+        update comment_table set likeAmount = likeAmount - 1 where id = #{id}
+    </update>
+
+
+
 </mapper>

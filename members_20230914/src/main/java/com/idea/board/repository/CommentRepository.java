@@ -22,4 +22,9 @@ public class CommentRepository {
     public List<CommentDTO> findById(CommentDTO commentDTO) {
         return sql.selectList("Comment.findById",commentDTO);
     }
+
+    public void updateHits(Long id) {
+        sql.update("Comment.updateLikeAmount", id);
+    }
+
 }
