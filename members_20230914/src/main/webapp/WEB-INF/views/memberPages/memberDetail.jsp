@@ -14,18 +14,45 @@
 <%@include file="../component/header.jsp"%>
 <%@include file="../component/nav.jsp"%>
 
-
-
+<div class="container mt-5">
     <h2>멤버 디테일 페이지</h2>
-        ${member.id}
-        ${member.memberEmail}
-        ${member.memberPassword}
-        ${member.memberName}
-        ${member.memberBirth}
-        ${member.memberMobile}
-    <a href="/update?id=${member.id}">정보수정</a>
-    <a href="/logout">로그아웃</a>
-<%@include file="../component/footer.jsp"%>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>멤버번호</th>
+                    <td th:text="${member.id}">${member.id}</td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td th:text="${member.memberEmail}">${member.memberEmail}</td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td type="password" th:text="${member.memberPassword}">${member.memberPassword}</td>
+                </tr>
+                <tr>
+                    <th>회원이름</th>
+                    <td>${member.memberName}</td>
+                </tr>
+                <tr>
+                    <th>생년월일</th>
+                    <td>${member.memberBirth}</td>
+                </tr>
+                <tr>
+                    <th>전화번호</th>
+                    <td th:text="${member.memberMobile}">${member.memberMobile}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a class="btn btn-primary" href="/member/update?id=${member.id}">정보수정</a>
+    <a class="btn btn-secondary" href="/member/logout">로그아웃</a>
+</div>
+
 
 </body>
+<%@include file="../component/footer.jsp"%>
 </html>

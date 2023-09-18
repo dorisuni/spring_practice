@@ -5,82 +5,97 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<%@include file="../component/header.jsp"%>
-<%@include file="../component/nav.jsp"%>
+<%@include file="../component/header.jsp" %>
+<%@include file="../component/nav.jsp" %>
 <body>
-<div id="section">
-    <table>
-        <tr>
-            <th>id</th>
-            <td>${board.id}</td>
-        <tr>
-            <th>writer</th>
-            <td>${board.boardWriter}</td>
-        </tr>
-        <tr>
-            <th>date</th>
-            <td>${board.createdAt}</td>
-        </tr>
-        <tr>
-            <th>hits</th>
-            <td>${board.boardHits}</td>
-        </tr>
-        <tr>
-            <th>title</th>
-            <td>${board.boardTitle}</td>
-        </tr>
-        <tr>
-            <th>contents</th>
-            <td>${board.boardContents}</td>
-        </tr>
-        <c:if test="${board.fileAttached == 1}">
-            <tr>
-                <th>image</th>
-                <td>
-                    <c:forEach items="${boardFileList}" var="boardFile">
-                        <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}"
-                             alt="" width="100" height="100">
-                    </c:forEach>
-                </td>
-            </tr>
-        </c:if>
-    </table>
-    <button onclick="board_list()">목록</button>
-    <button onclick="board_update()">수정</button>
-    <button onclick="board_delete()">삭제</button>
-
-    <div id="pass-check" style="display: none;">
-        <input type="text" id="board-pass" placeholder="비밀번호 입력하세요">
-        <input type="button" onclick="pass_check()" value="확인">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>게시판 디테일 페이지</h4>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>id</th>
+                    <td>${board.id}</td>
+                <tr>
+                    <th>writer</th>
+                    <td>${board.boardWriter}</td>
+                </tr>
+                <tr>
+                    <th>date</th>
+                    <td>${board.createdAt}</td>
+                </tr>
+                <tr>
+                    <th>hits</th>
+                    <td>${board.boardHits}</td>
+                </tr>
+                <tr>
+                    <th>title</th>
+                    <td>${board.boardTitle}</td>
+                </tr>
+                <tr>
+                    <th>contents</th>
+                    <td><textarea class="form-control" rows="5" th:text="${board.boardContents}" readonly>${board.boardContents}</textarea></td>
+                </tr>
+                <c:if test="${board.fileAttached == 1}">
+                <tr>
+                    <th>image</th>
+                    <td>
+                        <c:forEach items="${boardFileList}" var="boardFile">
+                            <img src="${pageContext.request.contextPath}/upload/${boardFile.storedFileName}"
+                                 alt="" width="100" height="100">
+                        </c:forEach>
+                    </td>
+                </tr>
+                </c:if>
+            </table>
+            <button class="btn btn-secondary" onclick="board_list()">목록</button>
+            <c:if test="${board.boardWriter == sessionScope.loginEmail}">
+                <button class="btn btn-primary" onclick="board_update()">수정</button>
+                <button class="btn btn-danger" onclick="board_delete()">삭제</button>
+            </c:if>
+            <c:if test="${sessionScope.loginEmail == 'admin'}">
+                <button class="btn btn-danger" onclick="board_delete()">삭제</button>
+            </c:if>
 
-    <div id="comment-write-area">
-        <input type="text" id="comment-writer" placeholder="작성자 입력">
-        <input type="text" id="comment-contents" placeholder="내용 입력">
-        <button onclick="comment_write()">댓글작성</button>
-    </div>
-    <div id="comment-list-area">
-        <c:choose>
-            <c:when test="${commentList == null}">
-                <h3>작성된 댓글이 없습니다.</h3>
-            </c:when>
-            <c:otherwise>
-                <table id="comment-list">
-                    <tr>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성시간</th>
-                    </tr>
-                    <c:forEach items="${commentList}" var="comment">
-                        <tr>
-                            <td>${comment.commentWriter}</td>
-                            <td>${comment.commentContents}</td>
-                            <td>${comment.createdAt}</td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </c:otherwise>
-        </c:choose>
+            <div id="pass-check" style="display: none;">
+                <input type="text" id="board-pass" placeholder="비밀번호 입력하세요">
+                <input type="button" onclick="pass_check()" value="확인">
+            </div>
+
+            <div id="comment-write-area">
+                <input type="text" id="comment-writer" placeholder="작성자 입력" value="${sessionScope.loginEmail}">
+                <input type="text" id="comment-contents" placeholder="내용 입력">
+                <button class="btn btn-primary" onclick="comment_write()">댓글작성</button>
+            </div>
+            <div id="comment-list-area">
+                <c:choose>
+                    <c:when test="${commentList == null}">
+                        <h3>작성된 댓글이 없습니다.</h3>
+                    </c:when>
+                    <c:otherwise>
+                        <table class="table" id="comment-list">
+                            <tr>
+                                <th>작성자</th>
+                                <th>내용</th>
+                                <th>작성시간</th>
+                            </tr>
+                            <c:forEach items="${commentList}" var="comment">
+                                <tr>
+                                    <td>${comment.commentWriter}</td>
+                                    <td>${comment.commentContents}</td>
+                                    <td>${comment.createdAt}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
     </div>
 </div>
 </body>
@@ -148,5 +163,5 @@
         }
     }
 </script>
-<%@include file="../component/footer.jsp"%>
+<%@include file="../component/footer.jsp" %>
 </html>

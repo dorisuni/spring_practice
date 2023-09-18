@@ -40,26 +40,30 @@ public class BoardController {
     public String findAll(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
                           @RequestParam(value = "q", required = false, defaultValue = "") String q,
                           @RequestParam(value = "type", required = false, defaultValue = "boardTitle") String type,
+                          @RequestParam(value = "amount", required = false ,defaultValue = "10") int amount,
+                          @RequestParam(value = "orderBy", required = false ,defaultValue = "id") String orderBy,
                           Model model) {
         // 검색이든 아니든 필요한 정보: boardList, paging
         List<BoardDTO> boardDTOList = null;
         PageDTO pageDTO = null;
-
-        // 검색요청인지 아닌지 구분
+        System.out.println("현재orderBy" + orderBy);
+        // 검색요청인지 아닌지 구분 이거 할 필요 없음.
         if (q.equals("")) {
             // 일반 페이지 요청
-            boardDTOList = boardService.pagingList(page);
-            pageDTO = boardService.pageNumber(page);
+            boardDTOList = boardService.searchList(q, type, page, amount, orderBy);
+            pageDTO = boardService.searchPageNumber(q, type, page, amount, orderBy);
         } else {
             // 검색결과 페이지 요청
-            boardDTOList = boardService.searchList(q, type, page);
-            pageDTO = boardService.searchPageNumber(q, type, page);
+            boardDTOList = boardService.searchList(q, type, page, amount, orderBy);
+            pageDTO = boardService.searchPageNumber(q, type, page, amount, orderBy);
         }
         model.addAttribute("boardList", boardDTOList);
         model.addAttribute("paging", pageDTO);
         model.addAttribute("q", q);
         model.addAttribute("type", type);
         model.addAttribute("page", page);
+        model.addAttribute("amount", amount);
+        model.addAttribute("orderBy",orderBy);
         return "boardPages/boardList";
     }
 

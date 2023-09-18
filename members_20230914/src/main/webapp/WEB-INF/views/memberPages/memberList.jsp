@@ -124,16 +124,15 @@
             <c:forEach items="${memberList}" var="member">
                 <tr>
                     <td>${member.id}</td>
-                    <td><a href="/member?id=${member.id}">${member.memberEmail}</a></td>
+                    <td><a href="/member/member?id=${member.id}">${member.memberEmail}</a></td>
                     <td>${member.memberName}</td>
                     <td>${member.memberBirth}</td>
                     <td>${member.memberMobile}</td>
                     <td>
-                        <button class="btn btn-info" onclick="detail_fn('${member.id}')">조회</button>
-                        <a href="/member?id=${member.id}">조회</a>
+                        <a class="btn btn-info" href="/member/member?id=${member.id}">조회</a>
                     </td>
                     <td>
-                        <button class="btn btn-danger" onclick="delete_fn('${member.id}')">삭제</button>
+                        <a class="btn btn-danger" href="/member/delete?id=${member.id}">삭제</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -141,25 +140,6 @@
     </div>
 </div>
 
-
-    <h4>인덱스 이메일 비밀번호 이름 생년월일 전화번호</h4>
-    <c:forEach items="${memberList}" var="member">
-        <td>
-            <a href="/member?id=${member.id}">${member.id}</a>
-        </td>
-            ${member.memberEmail}
-            ${member.memberPassword}
-            ${member.memberName}
-            ${member.memberBirth}
-            ${member.memberMobile}
-        <td>
-            <a href="/update?id=${member.id}">수정</a>
-        </td>
-        <td>
-            <a href="/delete?id=${member.id}">삭제</a>
-        </td>
-        <br>
-    </c:forEach>
 
 <%@include file="../component/footer.jsp"%>
 

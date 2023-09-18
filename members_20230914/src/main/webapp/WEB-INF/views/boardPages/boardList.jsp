@@ -12,9 +12,18 @@
     <%-- 검색 창 --%>
     <div class="container" id="search-area">
         <form action="/board/list" method="get">
+            <select name="amount">
+                <option value="10" selected>10개</option>
+                <option value="50">50개</option>
+                <option value="100">100개</option>
+            </select>
             <select name="type">
                 <option value="boardTitle">제목</option>
                 <option value="boardWriter">작성자</option>
+            </select>
+            <select name="orderBy">
+                <option value="id">최신순</option>
+                <option value="boardHits">조회수순</option>
             </select>
             <input type="text" name="q" placeholder="검색어를 입력하세요">
             <button type="submit" class="btn btn-primary">검색</button>
@@ -93,6 +102,11 @@
         </ul>
     </div>
 </div>
+
+
+<script>
+
+</script>
 
 </body>
 <%@include file="../component/footer.jsp"%>

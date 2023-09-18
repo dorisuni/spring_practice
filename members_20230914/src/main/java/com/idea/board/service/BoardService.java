@@ -125,29 +125,28 @@ public class BoardService {
         boardRepository.save(boardDTO);
     }
 
-    public List<BoardDTO> searchList(String q, String type, int page) {
+    public List<BoardDTO> searchList(String q, String type, int page, int amount,String orderBy) {
         Map<String, Object> searchParam = new HashMap<>();
         searchParam.put("q", q);
         searchParam.put("type", type);
-
-        int pageLimit = 10; // 한페이지당 보여줄 글 갯수
-        int pagingStart = (page - 1) * pageLimit; // 요청한 페이지에 보여줄 첫번째 게시글의 순서
+        int pagingStart = (page - 1) * amount; // 요청한 페이지에 보여줄 첫번째 게시글의 순서
         searchParam.put("start", pagingStart);
-        searchParam.put("limit", pageLimit);
-
+        searchParam.put("limit", amount);
+        searchParam.put("orderBy", orderBy);
+        System.out.println("현재 orderBy:"+orderBy);
         return boardRepository.searchList(searchParam);
     }
 
-    public PageDTO searchPageNumber(String q, String type, int page) {
-        int pageLimit = 10; // 한페이지에 보여줄 글 갯수
+    public PageDTO searchPageNumber(String q, String type, int page,int amount,String orderBy) {
         int blockLimit = 10; // 하단에 보여줄 페이지 번호 갯수
         Map<String, String> pagingParams = new HashMap<>();
         pagingParams.put("q", q);
         pagingParams.put("type", type);
+        pagingParams.put("orderBy",orderBy);
         // 검색어 기준 글 갯수 조회
         int boardCount = boardRepository.boardSearchCount(pagingParams);
         // 검색어 기준 전체 페이지 갯수 계산
-        int maxPage = (int) (Math.ceil((double)boardCount / pageLimit));
+        int maxPage = (int) (Math.ceil((double)boardCount / amount));
         // 검색어 기준 시작 페이지 값 계산(1, 4, 7, 10 ~~)
         int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
         // 검색어 기준 마지막 페이지 값 계산(3, 6, 9, 12 ~~)

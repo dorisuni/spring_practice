@@ -22,7 +22,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="boardWriter" class="form-label">작성자</label>
-                    <input type="text" class="form-control" id="boardWriter" name="boardWriter" required>
+                    <input type="text" class="form-control" id="boardWriter" name="boardWriter" value="${sessionScope.loginEmail}" >
                 </div>
                 <div class="mb-3">
                     <label for="boardPass" class="form-label">비밀번호</label>

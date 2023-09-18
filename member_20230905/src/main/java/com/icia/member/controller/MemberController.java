@@ -76,7 +76,7 @@ public class MemberController {
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Long id,Model model) {
         memberService.delete(id);
-        return "redirect:/memberList";
+        return "redirect:/members";
 
     }
 
