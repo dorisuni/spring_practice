@@ -77,10 +77,16 @@ public class MemberController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("id") Long id,Model model) {
-        memberService.delete(id);
-        return "redirect:/member/members";
-
+    public String delete(@RequestParam("id") Long id,Model model,HttpSession session) {
+        String loginEmail = session.getAttribute("loginEmail").toString();
+        if (loginEmail.equals("admin")){
+            memberService.delete(id);
+            return "redirect:/member/members";
+        }else{
+            memberService.delete(id);
+            session.invalidate();
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/update")

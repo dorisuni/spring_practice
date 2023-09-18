@@ -37,11 +37,7 @@
     <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
         select id, boardWriter, boardTitle,
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits
-        from board_table order by
-        <choose>
-            <when test="orderBy == 'id'">id</when>
-            <when test="orderBy == 'orderBy'">boardHits</when>
-        </choose>
+        from board_table order by ${orderBy}
         desc limit #{start}, #{limit}
     </select>
     <select id="count" resultType="Integer">
@@ -51,11 +47,7 @@
         select id, boardWriter, boardTitle,
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardHits
         from board_table where ${type} like concat('%',#{q},'%')
-        order by
-        <choose>
-            <when test="orderBy == 'id'">id</when>
-            <when test="orderBy == 'orderBy'">boardHits</when>
-        </choose>
+        order by ${orderBy}
         desc limit #{start}, #{limit}
     </select>
     <select id="searchCount" parameterType="java.util.HashMap" resultType="Integer">
