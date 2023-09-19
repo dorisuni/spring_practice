@@ -1,9 +1,7 @@
 package com.idea.board.service;
 
-import com.idea.board.dto.CommentDTO;
 import com.idea.board.dto.CommentLikeDTO;
 import com.idea.board.repository.CommentLikeRepository;
-import com.idea.board.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +24,8 @@ public class CommentLikeService {
         return commentLikeRepository.findAll(commentId);
     }
 
-    public CommentLikeDTO find(CommentLikeDTO commentLikeDTO){
-        return commentLikeRepository.find(commentLikeDTO);
+    public int findLike(CommentLikeDTO commentLikeDTO){
+        return commentLikeRepository.findLike(commentLikeDTO);
     }
 
 }

@@ -19,9 +19,16 @@ public class CommentService {
         return commentRepository.findAll(boardId);
     }
 
-    public List<CommentDTO> findById(CommentDTO commentDTO) {
-        return commentRepository.findById(commentDTO);
+    public CommentDTO findById(Long id) {
+        return commentRepository.findById(id);
     }
 
 
+    public void updateLikeAmount(Long commentId) {
+        commentRepository.updateLikeAmount(commentId);
+    }
+
+    public void deleteLikeAmount(Long commentId) {
+        commentRepository.deleteLikeAmount(commentId);
+    }
 }

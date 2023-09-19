@@ -85,35 +85,17 @@
                     <c:otherwise>
                         <table class="table" id="comment-list">
                             <tr>
+                                <th>좋아요</th>
                                 <th>작성자</th>
                                 <th>내용</th>
                                 <th>작성시간</th>
-                                <th>좋아요</th>
-                                <th>좋아요버튼</th>
                             </tr>
-                            <c:forEach items="${commentList}" var="comment">
+                            <c:forEach items="${commentList}" var="comment" varStatus="loop">
                                 <tr>
+                                    <td id="likeAmount"><button class="like-button" data-index="${comment.id}">Like</button>${comment.likeAmount}</td>
                                     <td>${comment.commentWriter}</td>
                                     <td>${comment.commentContents}</td>
                                     <td>${comment.createdAt}</td>
-                                    <td>${comment.likeAmount}</td>
-                                    <td>
-                                        <button class="button">
-                                            <div class="icon">
-                                                <div class="cannon"></div>
-                                                <div class="confetti">
-                                                    <svg viewBox="0 0 18 16">
-                                                        <polyline points="1 10 4 7 4 5 6 1" />
-                                                        <path d="M4,13 C5.33333333,9 7,7 9,7 C11,7 12.3340042,6 13.0020125,4" />
-                                                        <path d="M6,15 C7.83362334,13.6666667 9.83362334,12.6666667 12,12 C14.1663767,11.3333333 15.8330433,9.66666667 17,7" />
-                                                    </svg>
-                                                    <i></i><i></i><i></i><i></i><i></i><i></i>
-                                                    <div class="emitter"></div>
-                                                </div>
-                                            </div>
-                                            <span>좋아요</span>
-                                        </button>
-                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>
@@ -142,12 +124,14 @@
                 console.log("리턴값: ", res);
                 let output = "<table class='table' id=\"comment-list\">\n" +
                     "    <tr>\n" +
+                    "        <th>좋아요</th>\n" +
                     "        <th>작성자</th>\n" +
                     "        <th>내용</th>\n" +
                     "        <th>작성시간</th>\n" +
                     "    </tr>\n";
                 for (let i in res) {
                     output += "    <tr>\n";
+                    output += "        <td id='likeAmount'>" + "<button className='like-button' data-index='" + res[i].id + "'>Like</button>"+res[i].likeAmount+"</td>\n";
                     output += "        <td>" + res[i].commentWriter + "</td>\n";
                     output += "        <td>" + res[i].commentContents + "</td>\n";
                     output += "        <td>" + res[i].createdAt + "</td>\n";
@@ -187,6 +171,46 @@
             alert("비밀번호 불일치!");
         }
     }
+
+
+
+
 </script>
+<script>
+    const memberId = ${sessionScope.loginId};
+
+    // jQuery를 사용하여 버튼 클릭 이벤트 처리
+    $(document).ready(function () {
+        $(".like-button").click(function () {
+            // 클릭된 버튼의 data-index 속성을 가져옴
+            let commentId = $(this).attr("data-index");
+            let likeAmount =$(this).parent().text();
+                // 여기에서 Ajax 요청을 수행하고 인덱스를 사용하여 작업을 수행
+            console.log("멤버아이디:"+memberId);
+            console.log("코멘트아이디:"+commentId);
+            $.ajax({
+                type: "post",
+                url: "/comment/like",
+                data: {
+                    commentId: commentId,
+                    memberId: memberId
+                },
+                success: function (res) {
+                    console.log(res)
+                    $("#likeAmount").text(likeAmount);
+                },
+                error: function () {
+                    console.log("좋아요 실패");
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
+
+
 <%@include file="../component/footer.jsp" %>
 </html>

@@ -12,20 +12,23 @@
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
         from comment_table where boardId = #{boardId} order by id
     </select>
-    <select id="findById" parameterType="comment" resultType="comment">
+    <select id="findById" parameterType="Long" resultType="comment">
         select id, commentWriter, commentContents,likeAmount,
                date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
-        from comment_table where boardId = #{boardId} order by id
+        from comment_table where id = #{id}
     </select>
-    <!-- 댓글 좋아요 -->
+    <!-- 댓글 좋아요 갯수추가 -->
     <update id="updateLikeAmount" parameterType="Long">
         update comment_table set likeAmount = likeAmount + 1 where id = #{id}
     </update>
-    <!-- 댓글 좋아요취소 -->
+    <!-- 댓글 좋아요 갯수빼기 -->
     <update id="deleteLikeAmount" parameterType="Long">
         update comment_table set likeAmount = likeAmount - 1 where id = #{id}
     </update>
-
+    <!--    현재 좋아요 갯수 반환받기-->
+    <select id="checkLike" parameterType="Long" resultType="int">
+        select likeAmount from comment_table where id = #{commentId}
+    </select>
 
 
 </mapper>

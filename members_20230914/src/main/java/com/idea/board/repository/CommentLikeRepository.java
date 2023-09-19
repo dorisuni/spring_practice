@@ -1,6 +1,5 @@
 package com.idea.board.repository;
 
-import com.idea.board.dto.CommentDTO;
 import com.idea.board.dto.CommentLikeDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +27,7 @@ public class CommentLikeRepository {
         return sql.selectOne("CommentLike.find",commentLikeDTO);
     }
 
+    public int findLike(CommentLikeDTO commentLikeDTO) {
+        return sql.selectOne("CommentLike.findLike",commentLikeDTO);
+    }
 }

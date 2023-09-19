@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class CommentLikeDTO {
     private Long id;
+    private int checkLike;
     private Long memberId;
     private Long commentId;
 }

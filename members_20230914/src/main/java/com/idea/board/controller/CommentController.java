@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,15 +32,17 @@ public class CommentController {
     }
 
     @PostMapping("/like")
-    public ResponseEntity save(@ModelAttribute CommentLikeDTO commentLikeDTO){
-        CommentLikeDTO checkDTO = commentLikeService.find(commentLikeDTO);
-        if(checkDTO==null) {
+    public ResponseEntity save(@ModelAttribute CommentLikeDTO commentLikeDTO, Model model){
+        int check = commentLikeService.findLike(commentLikeDTO);
+        if(check == 0) {
             commentLikeService.save(commentLikeDTO);
+            commentService.updateLikeAmount(commentLikeDTO.getCommentId());
         }else{
             commentLikeService.delete(commentLikeDTO);
+            commentService.deleteLikeAmount(commentLikeDTO.getCommentId());
         }
-        List<CommentLikeDTO> commentLikeDTOList = commentLikeService.findAll(commentLikeDTO.getCommentId());
-        return new ResponseEntity<>(commentLikeDTOList, HttpStatus.OK);
+        CommentDTO commentDTO = commentService.findById(commentLikeDTO.getCommentId());
+        return new ResponseEntity<>(commentDTO, HttpStatus.OK);
     }
 
 

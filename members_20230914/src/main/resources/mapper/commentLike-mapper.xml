@@ -6,8 +6,8 @@
     <!-- 좋아요 -->
     <!-- 댓글 추천 시 Like 테이블에 insert -->
     <insert id="insertLike" parameterType="commentLike">
-        insert into comment_like_table(memberId,commentId)
-        values(#{memberId},#{commentId})
+        insert into comment_like_table(memberId,checkLike,commentId)
+        values(#{memberId},1,#{commentId})
     </insert>
     <!-- 댓글 추천취소 시 delete -->
     <delete id="deleteLike" parameterType="commentLike">
@@ -22,5 +22,13 @@
         select * from comment_like_table where memberId = #{memberId} and commentId= #{commentId}
     </select>
 
+    <!-- 좋아요 눌럿는지 안눌럿는지 -->
+    <select id="findLike" resultType="int">
+        select count(*) from comment_like_table where commentId = #{commentId} and memberId = #{memberId}
+    </select>
+<!--    해당 게시물 총 좋아요 갯수-->
+    <select id="totalLike" resultType="int">
+        select count(*) from comment_like_table where commentId = #{commentId}
+    </select>
 
 </mapper>

@@ -19,12 +19,15 @@ public class CommentRepository {
         return sql.selectList("Comment.findAll", boardId);
     }
 
-    public List<CommentDTO> findById(CommentDTO commentDTO) {
-        return sql.selectList("Comment.findById",commentDTO);
+    public CommentDTO findById(Long id) {
+        return sql.selectOne("Comment.findById",id);
     }
 
-    public void updateHits(Long id) {
-        sql.update("Comment.updateLikeAmount", id);
+    public void updateLikeAmount(Long commentId) {
+        sql.update("Comment.updateLikeAmount", commentId);
     }
 
+    public void deleteLikeAmount(Long commentId) {
+        sql.update("Comment.deleteLikeAmount", commentId);
+    }
 }
