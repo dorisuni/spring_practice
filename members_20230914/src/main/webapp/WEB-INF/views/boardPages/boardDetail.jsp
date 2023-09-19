@@ -5,8 +5,18 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style>
+        .heart {
+            filter: invert(78%) sepia(7%) saturate(6%) hue-rotate(324deg) brightness(105%) contrast(81%);
 
+        }
 
+        .heart:hover {
+            cursor: pointer
+        }
+
+        .heart.active {
+            filter: invert(68%) sepia(25%) saturate(2343%) hue-rotate(298deg) brightness(91%) contrast(87%);
+        }
     </style>
 </head>
 <%@include file="../component/header.jsp" %>
@@ -93,7 +103,12 @@
                             <c:forEach items="${commentList}" var="comment" varStatus="loop">
                                 <tr>
                                     <td id="${comment.id}">
-                                        <button class="like-button" data-index="${comment.id}">Like</button>
+                                        <button class="like-button heart" data-index="${comment.id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                                                                                                           height="24" viewBox="0 0 24 24" width="24">
+                                            <path d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                                        </svg></button>
                                         <span class="like-amount">${comment.likeAmount}</span>
                                     </td>
                                     <td>${comment.commentWriter}</td>
@@ -136,7 +151,7 @@
                 for (let i in res) {
                     output += "    <tr>\n";
                     output += "        <td id='" + res[i].id + "'>\n";
-                    output += "            <button class='like-button' data-index='" + res[i].id + "'>Like</button>\n";
+                    output += "            <button class='like-button heart' data-index='" + res[i].id + "'>Like</button>\n";
                     output += "            <span class='like-amount'>" + res[i].likeAmount + "</span>\n";
                     output += "        </td>\n";
                     output += "        <td>" + res[i].commentWriter + "</td>\n";
@@ -220,18 +235,21 @@
 </script>
 
 <script>
+    const boardId = ${board.id}
     $(document).on("click", ".like-button", function () {
         // 클릭된 버튼의 data-index 속성을 가져옴
         let commentId = $(this).data("index");
         // 여기에서 Ajax 요청을 수행하고 인덱스를 사용하여 작업을 수행
         console.log("멤버아이디:" + memberId);
         console.log("코멘트아이디:" + commentId);
+        console.log("보드아이디:"+boardId);
         $.ajax({
             type: "post",
             url: "/comment/like",
             data: {
                 commentId: commentId,
-                memberId: memberId
+                memberId: memberId,
+                boardId: boardId
             },
             success: function (res) {
                 console.log(res);

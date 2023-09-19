@@ -17,4 +17,5 @@ public class CommentDTO {
     private String createdAt;
     private Long boardId;
     private Long likeAmount;
+    private String likeMemberJson; // 사용자 정보를 JSON 문자열로 포함
 }

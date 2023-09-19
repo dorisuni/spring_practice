@@ -12,4 +12,5 @@ public class CommentLikeDTO {
     private int checkLike;
     private Long memberId;
     private Long commentId;
+    private Long boardId;
 }

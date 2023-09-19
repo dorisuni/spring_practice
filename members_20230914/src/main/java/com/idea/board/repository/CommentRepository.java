@@ -1,6 +1,7 @@
 package com.idea.board.repository;
 
 import com.idea.board.dto.CommentDTO;
+import com.idea.board.dto.CommentLikeDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,12 @@ public class CommentRepository {
 
     public void deleteLikeAmount(Long commentId) {
         sql.update("Comment.deleteLikeAmount", commentId);
+    }
+
+    public void updateLikeMemberJson(CommentDTO commentDTO) {
+        sql.update("Comment.updateLikeMemberJson",commentDTO);
+    }
+    public void deleteLikeMemberJson(CommentDTO commentDTO) {
+        sql.update("Comment.updateLikeMemberJson",commentDTO);
     }
 }

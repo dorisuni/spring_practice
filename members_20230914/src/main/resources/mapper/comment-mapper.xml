@@ -29,6 +29,23 @@
     <select id="checkLike" parameterType="Long" resultType="int">
         select likeAmount from comment_table where id = #{commentId}
     </select>
+    <!--    현재 좋아요 누른사람 추가하기-->
+    <update id="updateLikeMemberJson" parameterType="comment">
+        UPDATE comment_table
+        SET likeMemberJson = JSON_INSERT(
+                IFNULL(likeMemberJson, '[]'),  -- JSON 열이 NULL이면 빈 배열로 초기화
+                CONCAT('$[', JSON_LENGTH(IFNULL(likeMemberJson, '[]')), ']'),  -- 배열의 마지막에 추가
+                #{likeMemberJson}
+            )
+        WHERE id = #{id}
+    </update>
+
+    <!--    현재 좋아요 누른사람 제거하기-->
+<!--    <update id="deleteLikeMemberJson" parameterType="commentLikeDTO">-->
+<!--        UPDATE comment_table-->
+<!--        SET likeMemberJson = JSON_REMOVE(likeMemberJson, JSON_UNQUOTE(JSON_SEARCH(likeMemberJson, 'one', #{memberId})))-->
+<!--        WHERE id = #{commentId}-->
+<!--    </update>-->
 
 
 </mapper>
