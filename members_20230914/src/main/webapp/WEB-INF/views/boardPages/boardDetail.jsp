@@ -92,7 +92,10 @@
                             </tr>
                             <c:forEach items="${commentList}" var="comment" varStatus="loop">
                                 <tr>
-                                    <td id="likeAmount"><button class="like-button" data-index="${comment.id}">Like</button>${comment.likeAmount}</td>
+                                    <td id="${comment.id}">
+                                        <button class="like-button" data-index="${comment.id}">Like</button>
+                                        <span class="like-amount">${comment.likeAmount}</span>
+                                    </td>
                                     <td>${comment.commentWriter}</td>
                                     <td>${comment.commentContents}</td>
                                     <td>${comment.createdAt}</td>
@@ -107,6 +110,7 @@
 </div>
 </body>
 <script>
+    const memberId = ${sessionScope.loginId};
     const comment_write = () => {
         const commentWriter = document.getElementById("comment-writer").value;
         const commentContents = document.querySelector("#comment-contents").value;
@@ -131,7 +135,10 @@
                     "    </tr>\n";
                 for (let i in res) {
                     output += "    <tr>\n";
-                    output += "        <td id='likeAmount'>" + "<button className='like-button' data-index='" + res[i].id + "'>Like</button>"+res[i].likeAmount+"</td>\n";
+                    output += "        <td id='" + res[i].id + "'>\n";
+                    output += "            <button class='like-button' data-index='" + res[i].id + "'>Like</button>\n";
+                    output += "            <span class='like-amount'>" + res[i].likeAmount + "</span>\n";
+                    output += "        </td>\n";
                     output += "        <td>" + res[i].commentWriter + "</td>\n";
                     output += "        <td>" + res[i].commentContents + "</td>\n";
                     output += "        <td>" + res[i].createdAt + "</td>\n";
@@ -139,8 +146,9 @@
                 }
                 output += "</table>";
                 result.innerHTML = output;
-                document.getElementById("comment-writer").value = "";
+                document.getElementById("comment-writer").value = memberId;
                 document.getElementById("comment-contents").value = "";
+                attachClickEventToNewComment(res[i].commentId);
             },
             error: function () {
                 console.log("댓글 작성 실패");
@@ -177,38 +185,68 @@
 
 </script>
 <script>
-    const memberId = ${sessionScope.loginId};
 
-    // jQuery를 사용하여 버튼 클릭 이벤트 처리
-    $(document).ready(function () {
-        $(".like-button").click(function () {
-            // 클릭된 버튼의 data-index 속성을 가져옴
-            let commentId = $(this).attr("data-index");
-            let likeAmount =$(this).parent().text();
-                // 여기에서 Ajax 요청을 수행하고 인덱스를 사용하여 작업을 수행
-            console.log("멤버아이디:"+memberId);
-            console.log("코멘트아이디:"+commentId);
-            $.ajax({
-                type: "post",
-                url: "/comment/like",
-                data: {
-                    commentId: commentId,
-                    memberId: memberId
-                },
-                success: function (res) {
-                    console.log(res)
-                    $("#likeAmount").text(likeAmount);
-                },
-                error: function () {
-                    console.log("좋아요 실패");
-                }
-            });
-        });
-    });
+
+    // // jQuery를 사용하여 버튼 클릭 이벤트 처리
+    // $(document).ready(function () {
+    //     $(".like-button").click(function () {
+    //         // 클릭된 버튼의 data-index 속성을 가져옴
+    //         let commentId = $(this).attr("data-index");
+    //         console.log("여기가현재작동중")
+    //         // 여기에서 Ajax 요청을 수행하고 인덱스를 사용하여 작업을 수행
+    //         console.log("멤버아이디:"+memberId);
+    //         console.log("코멘트아이디:"+commentId);
+    //         $.ajax({
+    //             type: "post",
+    //             url: "/comment/like",
+    //             data: {
+    //                 commentId: commentId,
+    //                 memberId: memberId
+    //             },
+    //             success: function (res) {
+    //                 console.log(res)
+    //                 console.log("현재 likeAmount값:"+res.likeAmount);
+    //                 let likeAmount = $("#" + commentId + " .like-amount");
+    //                 likeAmount.text(res.likeAmount);
+    //             },
+    //             error: function () {
+    //                 console.log("좋아요 실패");
+    //             }
+    //         });
+    //     });
+    // });
 
 
 </script>
 
+<script>
+    $(document).on("click", ".like-button", function () {
+        // 클릭된 버튼의 data-index 속성을 가져옴
+        let commentId = $(this).data("index");
+        // 여기에서 Ajax 요청을 수행하고 인덱스를 사용하여 작업을 수행
+        console.log("멤버아이디:" + memberId);
+        console.log("코멘트아이디:" + commentId);
+        $.ajax({
+            type: "post",
+            url: "/comment/like",
+            data: {
+                commentId: commentId,
+                memberId: memberId
+            },
+            success: function (res) {
+                console.log(res);
+                // 서버 응답으로 업데이트된 likeAmount 값을 해당 HTML 요소에 반영
+                let likeAmount = $("#" + commentId + " .like-amount");
+                likeAmount.text(res.likeAmount);
+                console.log("현재 likeAmount값:" + res.likeAmount);
+            },
+            error: function () {
+                console.log("좋아요 실패");
+            }
+        });
+    });
+
+</script>
 
 
 
