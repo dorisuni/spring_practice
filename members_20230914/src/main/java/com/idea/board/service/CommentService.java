@@ -36,4 +36,7 @@ public class CommentService {
     public void updateLikeMemberJson(CommentDTO commentDTO) {
         commentRepository.updateLikeMemberJson(commentDTO);
     }
+    public void deleteLikeMemberJson(CommentDTO commentDTO) {
+        commentRepository.deleteLikeMemberJson(commentDTO);
+    }
 }

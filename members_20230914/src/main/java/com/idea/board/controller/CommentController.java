@@ -46,8 +46,13 @@ public class CommentController {
             System.out.println("commentDTO = " + commentDTO);
             commentService.updateLikeMemberJson(commentDTO);
         }else{
+            CommentDTO commentDTO = new CommentDTO();
+            commentDTO.setId(commentLikeDTO.getCommentId());
+            commentDTO.setBoardId(commentLikeDTO.getBoardId());
+            commentDTO.setLikeMemberJson(String.valueOf(commentLikeDTO.getMemberId()));
             commentLikeService.delete(commentLikeDTO);
             commentService.deleteLikeAmount(commentLikeDTO.getCommentId());
+            commentService.deleteLikeMemberJson(commentDTO);
         }
 
         List<CommentDTO> commentDTOList = commentService.findAll(commentLikeDTO.getBoardId()); // 댓글 리스트 가져오는 예시

@@ -39,13 +39,14 @@
             )
         WHERE id = #{id}
     </update>
-
     <!--    현재 좋아요 누른사람 제거하기-->
-<!--    <update id="deleteLikeMemberJson" parameterType="commentLikeDTO">-->
-<!--        UPDATE comment_table-->
-<!--        SET likeMemberJson = JSON_REMOVE(likeMemberJson, JSON_UNQUOTE(JSON_SEARCH(likeMemberJson, 'one', #{memberId})))-->
-<!--        WHERE id = #{commentId}-->
-<!--    </update>-->
+    <update id="deleteLikeMemberJson" parameterType="comment">
+        UPDATE comment_table
+        SET likeMemberJson = JSON_REMOVE(likeMemberJson, #{likeMemberJson})
+        WHERE id = #{id}
+    </update>
+
+
 
 
 </mapper>
