@@ -85,6 +85,7 @@ public class BoardController {
         }
 
         List<CommentDTO> commentDTOList = commentService.findAll(id);
+        System.out.println("listofcomment = " + commentDTOList);
         if (commentDTOList.size() == 0) {
             model.addAttribute("commentList", null);
         } else {

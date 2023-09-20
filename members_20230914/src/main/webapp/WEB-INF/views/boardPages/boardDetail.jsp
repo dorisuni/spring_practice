@@ -115,6 +115,24 @@
                                     <td>${comment.commentContents}</td>
                                     <td>${comment.createdAt}</td>
                                 </tr>
+                                <script>
+                                    // 서버에서 가져온 JSON 데이터를 JavaScript로 처리
+                                    try {
+                                        let likeMemberJson = ${comment.likeMemberJson};
+                                        let sessionUserId = "${sessionScope.loginId}"; // 세션 아이디
+                                        likeMemberJson.forEach(item=>{
+                                            if(item===sessionUserId){
+                                                // 세션 ID가 일치하는 경우 특정 태그(예시: div)에 클래스 추가하여 활성화
+                                                const elementToActivate = document.querySelector('.like-button[data-index="${comment.id}"]');
+                                                elementToActivate.classList.add('active');
+                                            }
+                                        })
+                                    } catch (error) {
+                                        console.error('JSON 파싱 오류:', error);
+                                    }
+
+
+                                </script>
                             </c:forEach>
                         </table>
                     </c:otherwise>
@@ -266,6 +284,15 @@
 
 </script>
 
+<script>
+    $(document).ready(function () {
+        // .like-button 클래스를 가진 요소가 클릭되면 이벤트 핸들러 실행
+        $(document).on("click", ".like-button", function () {
+            // 클릭한 요소에 .active 클래스를 토글
+            $(this).toggleClass("active");
+        });
+    });
+</script>
 
 
 <%@include file="../component/footer.jsp" %>

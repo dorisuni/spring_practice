@@ -9,12 +9,12 @@
     </insert>
     <select id="findAll" parameterType="Long" resultType="comment">
         select id, commentWriter, commentContents,likeAmount,
-               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
+               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId,likeMemberJson
         from comment_table where boardId = #{boardId} order by id
     </select>
     <select id="findById" parameterType="Long" resultType="comment">
         select id, commentWriter, commentContents,likeAmount,
-               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId
+               date_format(createdAt, "%y-%m-%d %H:%i:%s") as createdAt, boardId,likeMemberJson
         from comment_table where id = #{id}
     </select>
     <!-- 댓글 좋아요 갯수추가 -->
@@ -40,13 +40,21 @@
         WHERE id = #{id}
     </update>
     <!--    현재 좋아요 누른사람 제거하기-->
-    <update id="deleteLikeMemberJson" parameterType="comment">
+    <update id="deleteLikeMemberJson" parameterType="String">
         UPDATE comment_table
-        SET likeMemberJson = JSON_REMOVE(likeMemberJson, #{likeMemberJson})
+        SET likeMemberJson = JSON_REMOVE(likeMemberJson, #{index})
         WHERE id = #{id}
     </update>
+<!--    &lt;!&ndash;    현재 좋아요 누른사람 제거하기&ndash;&gt;-->
+<!--    <update id="deleteLikeMemberJson" parameterType="String">-->
+<!--        UPDATE comment_table-->
+<!--        SET likeMemberJson = JSON_REMOVE(likeMemberJson, #{result1})-->
+<!--        WHERE id = 33-->
+<!--    </update>-->
 
-
-
+<!--    json 인덱스 찾기-->
+    <select id="searchJson" parameterType="comment" resultType="String">
+        SELECT JSON_SEARCH(likeMemberJson, 'one', #{likeMemberJson}) FROM comment_table WHERE id = #{id};
+    </select>
 
 </mapper>
