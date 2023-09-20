@@ -1,8 +1,7 @@
 package com.idea.board.controller;
 
-import com.idea.board.dto.CommentDTO;
-import com.idea.board.dto.CommentLikeDTO;
-import com.idea.board.dto.CommentResponseDTO;
+import com.idea.board.dto.*;
+import com.idea.board.service.BoardService;
 import com.idea.board.service.CommentLikeService;
 import com.idea.board.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.xml.stream.events.Comment;
 import java.util.List;
@@ -25,6 +21,8 @@ public class CommentController {
     private CommentService commentService;
     @Autowired
     CommentLikeService commentLikeService;
+    @Autowired
+    BoardService boardService;
     @PostMapping("/save")
     public ResponseEntity save(@ModelAttribute CommentDTO commentDTO) {
         commentService.save(commentDTO);
@@ -61,6 +59,50 @@ public class CommentController {
 
         CommentDTO commentDTO = commentService.findById(commentLikeDTO.getCommentId());
         return new ResponseEntity<>(commentDTO, HttpStatus.OK);
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute CommentDTO commentDTO, Model model) {
+        commentService.update(commentDTO);
+        BoardDTO dto = boardService.findById(commentDTO.getBoardId());
+        Long boardId = commentDTO.getBoardId();
+        model.addAttribute("board", dto);
+        // 첨부된 파일이 있다면 파일을 가져옴
+        if (dto.getFileAttached() == 1) {
+            List<BoardFileDTO> boardFileDTOList = boardService.findFile(boardId);
+            model.addAttribute("boardFileList", boardFileDTOList);
+        }
+        List<CommentDTO> commentDTOList = commentService.findAll(commentDTO.getId());
+        System.out.println("listofcomment = " + commentDTOList);
+        if (commentDTOList.size() == 0) {
+            model.addAttribute("commentList", null);
+        } else {
+            model.addAttribute("commentList", commentDTOList);
+        }
+
+        return "boardPages/boardDetail";
+//        return "redirect:/board?id=" + boardDTO.getId();
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Long commentId,@RequestParam("boardId") Long boardId,Model model) {
+        System.out.println("will delete this comment:=>"+commentId);
+        commentService.delete(commentId);
+        BoardDTO dto = boardService.findById(boardId);
+        model.addAttribute("board", dto);
+        // 첨부된 파일이 있다면 파일을 가져옴
+        if (dto.getFileAttached() == 1) {
+            List<BoardFileDTO> boardFileDTOList = boardService.findFile(boardId);
+            model.addAttribute("boardFileList", boardFileDTOList);
+        }
+        List<CommentDTO> commentDTOList = commentService.findAll(boardId);
+        System.out.println("listofcomment = " + commentDTOList);
+        if (commentDTOList.size() == 0) {
+            model.addAttribute("commentList", null);
+        } else {
+            model.addAttribute("commentList", commentDTOList);
+        }
+        return "boardPages/boardDetail";
     }
 
 

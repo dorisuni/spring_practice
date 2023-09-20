@@ -99,6 +99,7 @@
                                 <th>작성자</th>
                                 <th>내용</th>
                                 <th>작성시간</th>
+                                <th>수정/삭제</th>
                             </tr>
                             <c:forEach items="${commentList}" var="comment" varStatus="loop">
                                 <tr>
@@ -114,6 +115,10 @@
                                     <td>${comment.commentWriter}</td>
                                     <td>${comment.commentContents}</td>
                                     <td>${comment.createdAt}</td>
+                                    <c:if test="${comment.commentWriter == sessionScope.loginEmail}">
+                                        <td><button data-index="${comment.id}" data-boardId="${board.id}" class="btn btn-primary btn-sm" onclick="comment_update(this)">수정</button></td>
+                                        <td><button data-index="${comment.id}" data-boardId="${board.id}" class="btn btn-danger btn-sm" onclick="comment_delete(this)">삭제</button></td>
+                                    </c:if>
                                 </tr>
                                 <script>
                                     // 서버에서 가져온 JSON 데이터를 JavaScript로 처리
@@ -130,8 +135,6 @@
                                     } catch (error) {
                                         console.error('JSON 파싱 오류:', error);
                                     }
-
-
                                 </script>
                             </c:forEach>
                         </table>
@@ -212,11 +215,8 @@
             alert("비밀번호 불일치!");
         }
     }
-
-
-
-
 </script>
+
 <script>
 
 
@@ -294,6 +294,21 @@
     });
 </script>
 
+<script>
+    const comment_update = (button) => {
+        const commentId = button.getAttribute('data-index');
+        console.log("코멘트 아이디: " + commentId)
+        location.href = "/comment/update?id=" + commentId;
+    }
+
+
+    const comment_delete = (button) => {
+        const commentId = button.getAttribute('data-index');
+        const boardId = button.getAttribute('data-boardId');
+        console.log("코멘트 아이디: " + commentId, "보드 아이디: " + boardId);
+        location.href = "/comment/delete?id=" + commentId + "&boardId=" + boardId;
+    }
+</script>
 
 <%@include file="../component/footer.jsp" %>
 </html>

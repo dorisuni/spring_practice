@@ -59,4 +59,11 @@ public class CommentRepository {
 //        sql.update("Comment.deleteLikeMemberJson",commentDTO);
     }
 
+    public void update(CommentDTO commentDTO) {
+        sql.update("Comment.update",commentDTO);
+    }
+
+    public void delete(Long id) {
+        sql.delete("Comment.delete",id);
+    }
 }

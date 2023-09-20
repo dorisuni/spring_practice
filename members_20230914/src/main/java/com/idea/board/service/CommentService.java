@@ -39,4 +39,17 @@ public class CommentService {
     public void deleteLikeMemberJson(CommentDTO commentDTO) {
         commentRepository.deleteLikeMemberJson(commentDTO);
     }
+
+    public void update(CommentDTO commentDTO) {
+        commentRepository.update(commentDTO);
+    }
+
+    public void delete(Long id) {
+        try{
+            commentRepository.delete(id);
+        }catch (Exception e){
+            System.out.println("deletecomment = " + e.toString());
+        }
+
+    }
 }

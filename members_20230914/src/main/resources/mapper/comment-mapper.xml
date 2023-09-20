@@ -45,6 +45,12 @@
         SET likeMemberJson = JSON_REMOVE(likeMemberJson, #{index})
         WHERE id = #{id}
     </update>
+    <update id="update" parameterType="comment">
+        UPDATE comment_table
+        set commentContents = #{commentContents} , createdAt= NOW()
+        WHERE id=#{id}
+    </update>
+
 <!--    &lt;!&ndash;    현재 좋아요 누른사람 제거하기&ndash;&gt;-->
 <!--    <update id="deleteLikeMemberJson" parameterType="String">-->
 <!--        UPDATE comment_table-->
@@ -56,5 +62,10 @@
     <select id="searchJson" parameterType="comment" resultType="String">
         SELECT JSON_SEARCH(likeMemberJson, 'one', #{likeMemberJson}) FROM comment_table WHERE id = #{id};
     </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from comment_table where id=#{id}
+    </delete>
+
 
 </mapper>
