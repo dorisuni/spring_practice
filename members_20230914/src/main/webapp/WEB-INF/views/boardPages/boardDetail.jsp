@@ -113,7 +113,10 @@
                                         <span class="like-amount">${comment.likeAmount}</span>
                                     </td>
                                     <td>${comment.commentWriter}</td>
-                                    <td>${comment.commentContents}</td>
+                                    <td class="${comment.id}">
+                                        <span>${comment.commentContents}</span>
+                                        <input type="text" class="comment-input" style="display: none;">
+                                    </td>
                                     <td>${comment.createdAt}</td>
                                     <c:if test="${comment.commentWriter == sessionScope.loginEmail}">
                                         <td><button data-index="${comment.id}" data-boardId="${board.id}" class="btn btn-primary btn-sm" onclick="comment_update(this)">수정</button></td>
@@ -298,6 +301,39 @@
     const comment_update = (button) => {
         const commentId = button.getAttribute('data-index');
         console.log("코멘트 아이디: " + commentId)
+        // 해당 댓글의 td 요소를 찾습니다.
+        const tdElement = document.querySelector(`[data-index="${commentId}"]`);
+
+        // 댓글 내용을 감싸는 span 요소와 input 요소를 찾습니다.
+        const spanElement = tdElement.querySelector('span');
+        const inputElement = tdElement.querySelector('.comment-input');
+
+        // span 요소를 숨기고 input 요소를 표시합니다.
+        spanElement.style.display = 'none';
+        inputElement.style.display = 'block';
+
+        // input 요소에 댓글 내용을 설정합니다.
+        inputElement.value = spanElement.textContent;
+
+        // $.ajax({
+        //     type: "post",
+        //     url: "/comment/update",
+        //     data: {
+        //         id: commentId,
+        //         commentContents: inputElement.value
+        //     },
+        //     success: function (res) {
+        //         console.log("댓글수정 성공");
+        //         // 서버 응답으로 업데이트된 likeAmount 값을 해당 HTML 요소에 반영
+        //         // let likeAmount = $("#" + commentId + " .like-amount");
+        //         // likeAmount.text(res.likeAmount);
+        //         // console.log("현재 likeAmount값:" + res.likeAmount);
+        //     },
+        //     error: function () {
+        //         console.log("댓글수정 실패");
+        //     }
+        // });
+
         location.href = "/comment/update?id=" + commentId;
     }
 
